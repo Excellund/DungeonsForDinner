@@ -11,9 +11,29 @@ config_version=5
 [application]
 
 config/name="DungeonsForDinner"
+run/main_scene="res://scenes/game.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=960
+window/size/viewport_height=540
+window/size/resizable=false
+window/stretch/mode="canvas_items"
 
 [dotnet]
 
 project/assembly_name="DungeonsForDinner"
+
+[file_customization]
+
+folder_colors={
+"res://assets/": "red",
+"res://scenes/": "orange",
+"res://scripts/": "yellow"
+}
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

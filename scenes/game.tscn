@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ec3qd12oua7e"]
+
+[ext_resource type="PackedScene" uid="uid://bdc1u3sbd01uv" path="res://scenes/player.tscn" id="1_5bd40"]
+[ext_resource type="Texture2D" uid="uid://chqpq40r8y643" path="res://assets/underworld.png" id="2_sxpan"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_5bd40")]
+top_level = true
+position = Vector2(-283.285, -120)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -270)
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(0, -270)
+scale = Vector2(3, 3)
+texture = ExtResource("2_sxpan")
