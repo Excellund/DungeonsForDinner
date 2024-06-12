@@ -1,18 +1,24 @@
-extends Node
+extends Node2D
 
 class_name Character
 
+var character_name: String
 var health: int
 var max_health: int
 var nourishments: Array[Nourishment]
 
-func _init(health, max_health):
+signal dead
+
+func _init(name, health, max_health):
+	self.character_name = name
 	self.health = health
 	self.max_health = max_health
 	self.nourishments = []
 
 func take_damage(amount: int):
 	self.health = max(health - amount, 0)
+	if health <= 0:
+		die()
 	
 func heal(amount: int) -> void:
 	self.health = min(health + amount, max_health)
@@ -31,4 +37,4 @@ func decrease_nourishments():
 			nourishment.amount -= 1
 
 func die():
-	pass
+	emit_signal("dead")
