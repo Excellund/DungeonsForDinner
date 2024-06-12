@@ -3,11 +3,11 @@
 [ext_resource type="FontFile" uid="uid://3sb0n88od4iq" path="res://assets/fonts/Minecraft.ttf" id="1_8utgf"]
 [ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_xx7ro"]
 
-[sub_resource type="Gradient" id="Gradient_0lakc"]
+[sub_resource type="Gradient" id="Gradient_ecte3"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_2f4w2"]
-gradient = SubResource("Gradient_0lakc")
+gradient = SubResource("Gradient_ecte3")
 width = 960
 height = 540
 fill = 1

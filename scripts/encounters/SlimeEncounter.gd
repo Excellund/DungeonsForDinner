@@ -2,7 +2,7 @@ extends Encounter
 
 class_name SlimeEncounter
 
-const SLIME = preload("res://scenes/slime.tscn")
+const SLIME = preload("res://scenes/enemies/slime.tscn")
 
 const X: int = 1520
 const Y: int = 1000

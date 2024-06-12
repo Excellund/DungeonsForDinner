@@ -1,0 +1,11 @@
+extends EnemyCharacter
+
+class_name MushroomCharacter
+
+const NAME = "Mushroom"
+const STARTING_HEALTH_MAX = 34
+const STARTING_HEALTH_MIN = 26
+
+func _init():
+	self.name = NAME
+	self.health = randi_range(STARTING_HEALTH_MIN, STARTING_HEALTH_MAX)
