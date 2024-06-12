@@ -254,7 +254,7 @@ animations = [{
 size = Vector2(40, 26)
 
 [node name="Slime" type="Node2D"]
-scale = Vector2(3, 3)
+scale = Vector2(6, 6)
 script = ExtResource("1_lsafh")
 
 [node name="Character" type="Node2D" parent="."]

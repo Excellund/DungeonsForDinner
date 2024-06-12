@@ -18,16 +18,20 @@ func play_animation(animation: State):
 		State.IDLE:
 			play("idle")
 		State.HURT:
-			play("hurt")
+			play("hurt", true)
 		State.DEATH:
 			play("death")
 
 func set_animation_state(state: String):
+	if current_animation == State.DEATH:
+		return
+	
 	match state:
 		"idle":
 			current_animation = State.IDLE
 			play_animation(current_animation)
 		"hurt":
+			stop()
 			current_animation = State.HURT
 			play_animation(current_animation)
 		"death":

@@ -1,34 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpk83yqaqalnm"]
+[gd_scene load_steps=5 format=3 uid="uid://ixld64d5aqu"]
 
-[ext_resource type="FontFile" uid="uid://3sb0n88od4iq" path="res://assets/fonts/Minecraft.ttf" id="1_8utgf"]
-[ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_xx7ro"]
+[ext_resource type="Script" path="res://scripts/PauseMenu.gd" id="1_a8mhx"]
+[ext_resource type="FontFile" uid="uid://3sb0n88od4iq" path="res://assets/fonts/Minecraft.ttf" id="2_hlg5q"]
 
-[sub_resource type="Gradient" id="Gradient_0lakc"]
+[sub_resource type="Gradient" id="Gradient_s2ynt"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_2f4w2"]
-gradient = SubResource("Gradient_0lakc")
-width = 960
-height = 540
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s73ll"]
+gradient = SubResource("Gradient_s2ynt")
+width = 640
+height = 360
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="Main Menu" type="Node2D"]
+[node name="Pause Menu" type="Node2D"]
+visible = false
+script = ExtResource("1_a8mhx")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 1920.0
 offset_bottom = 1080.0
 size_flags_vertical = 0
-texture = SubResource("GradientTexture2D_2f4w2")
+texture = SubResource("GradientTexture2D_s73ll")
+stretch_mode = 3
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
-script = ExtResource("1_xx7ro")
 
-[node name="Expedition" type="Button" parent="Control"]
+[node name="Resume" type="Button" parent="Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -41,9 +43,9 @@ offset_right = 130.0
 offset_bottom = -44.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("1_8utgf")
+theme_override_fonts/font = ExtResource("2_hlg5q")
 theme_override_font_sizes/font_size = 48
-text = "Expedition"
+text = "Resume"
 
 [node name="Options" type="Button" parent="Control"]
 layout_mode = 1
@@ -58,11 +60,11 @@ offset_right = 130.0
 offset_bottom = 28.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("1_8utgf")
+theme_override_fonts/font = ExtResource("2_hlg5q")
 theme_override_font_sizes/font_size = 48
 text = "Options"
 
-[node name="Exit" type="Button" parent="Control"]
+[node name="Main Menu" type="Button" parent="Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -75,10 +77,10 @@ offset_right = 130.0
 offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("1_8utgf")
+theme_override_fonts/font = ExtResource("2_hlg5q")
 theme_override_font_sizes/font_size = 48
-text = "Exit"
+text = "Main Menu"
 
-[connection signal="pressed" from="Control/Expedition" to="Control" method="_on_expedition_pressed"]
-[connection signal="pressed" from="Control/Options" to="Control" method="_on_options_pressed"]
-[connection signal="pressed" from="Control/Exit" to="Control" method="_on_exit_pressed"]
+[connection signal="pressed" from="Control/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Control/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Control/Main Menu" to="." method="_on_main_menu_pressed"]

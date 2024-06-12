@@ -31,9 +31,11 @@ func set_animation_state(state: String):
 			current_animation = PlayerAnimation.IDLE
 			play_animation(current_animation)
 		"slash":
+			stop()
 			current_animation = PlayerAnimation.SLASH
 			play_animation(current_animation)
 		"thrust":
+			stop()
 			current_animation = PlayerAnimation.THRUST
 			play_animation(current_animation)
 		"death":
