@@ -11,4 +11,4 @@ func _input(event):
 		animations.set_animation_state("thrust")
 
 func _on_enemy_clicked(target: Character):
-	DamageAction.new(5, target)
+	DamageAction.new(10, target)

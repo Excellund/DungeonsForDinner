@@ -13,4 +13,4 @@ func _on_options_pressed():
 	pass
 
 func _on_main_menu_pressed():
-	SceneManager.load_scene(SceneManager.SceneType.MAIN_MENU)
+	_SceneManager.load_scene(_SceneManager.SceneType.MAIN_MENU)

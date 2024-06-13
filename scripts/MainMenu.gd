@@ -3,7 +3,7 @@ extends Control
 class_name MainMenu
 
 func _on_expedition_pressed():
-	SceneManager.load_scene(SceneManager.SceneType.GAME)
+	_SceneManager.load_scene(_SceneManager.SceneType.GAME)
 
 func _on_options_pressed():
 	print("Options functionality not implemented yet.")
