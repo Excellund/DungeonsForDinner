@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://be4g8p4n43mb"]
+
+[ext_resource type="Texture2D" uid="uid://0mj0mytu3hwp" path="res://assets/cardback2.png" id="2_11eg1"]
+
+[sub_resource type="GDScript" id="GDScript_b2bmn"]
+script/source = "extends Resource
+
+class_name CardData
+
+@export_group(\"card data\")
+@export var texture: Texture
+@export var name: String
+@export var cost: String
+@export_multiline var attack_text: String
+@export_multiline var eat_text: String
+"
+
+[resource]
+script = SubResource("GDScript_b2bmn")
+texture = ExtResource("2_11eg1")
+name = "block"
+cost = "2"
+attack_text = "hit"
+eat_text = "eat"
