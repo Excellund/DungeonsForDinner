@@ -5,6 +5,7 @@ class_name Character
 var character_name: String
 var health: int
 var max_health: int
+var is_dead: bool
 var nourishments: Array[Nourishment]
 
 signal dead
@@ -37,4 +38,5 @@ func decrease_nourishments():
 			nourishment.amount -= 1
 
 func die():
+	is_dead = true
 	emit_signal("dead")
