@@ -196,7 +196,7 @@ script = ExtResource("1_qo04o")
 [node name="Character" type="Node2D" parent="."]
 script = ExtResource("2_7ah1p")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="VFX" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_v4dnl")
 animation = &"idle"
 frame_progress = 0.62562
@@ -209,5 +209,5 @@ script = ExtResource("7_nihci")
 position = Vector2(-6, 0)
 shape = SubResource("RectangleShape2D_ccfwp")
 
-[connection signal="animation_finished" from="AnimatedSprite2D" to="AnimatedSprite2D" method="_on_animation_finished"]
+[connection signal="animation_finished" from="VFX" to="VFX" method="_on_animation_finished"]
 [connection signal="input_event" from="Area2D" to="Area2D" method="_on_input_event"]

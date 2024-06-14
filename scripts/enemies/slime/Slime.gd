@@ -2,7 +2,7 @@ extends Entity
 
 class_name Slime
 
-@onready var animations = $AnimatedSprite2D
+@onready var animations = $VFX
 
 func _on_area_clicked():
 	super._on_area_clicked()

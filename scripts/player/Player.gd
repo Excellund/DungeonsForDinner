@@ -2,7 +2,7 @@ extends Entity
 
 class_name Player
 
-@onready var animations = $AnimatedSprite2D
+@onready var animations = $VFX
 
 func _input(event):
 	if event.is_action_pressed("left_click"):

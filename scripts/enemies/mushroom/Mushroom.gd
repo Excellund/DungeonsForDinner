@@ -2,7 +2,7 @@ extends Entity
 
 class_name Mushroom
 
-@onready var animations = $AnimatedSprite2D
+@onready var animations = $VFX
 
 func _on_area_clicked():
 	super._on_area_clicked()

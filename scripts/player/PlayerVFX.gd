@@ -1,35 +1,23 @@
-extends AnimatedSprite2D
+extends EntityVFX
 
 class_name PlayerVFX
 
 enum PlayerAnimation {
-	IDLE,
-	SLASH,
-	THRUST,
-	DEATH
+	SLASH = 3,
+	THRUST = 4
 }
 
-var current_animation: PlayerAnimation = PlayerAnimation.IDLE
-
-func _ready():
-	play_animation(PlayerAnimation.IDLE)
-
-func play_animation(animation: PlayerAnimation):
+func play_animation(animation):
+	super.play_animation(animation)
 	match animation:
-		PlayerAnimation.IDLE:
-			play("idle")
 		PlayerAnimation.SLASH:
 			play("slash")
 		PlayerAnimation.THRUST:
 			play("thrust")
-		PlayerAnimation.DEATH:
-			play("death")
 
 func set_animation_state(state: String):
+	super.set_animation_state(state)
 	match state:
-		"idle":
-			current_animation = PlayerAnimation.IDLE
-			play_animation(current_animation)
 		"slash":
 			stop()
 			current_animation = PlayerAnimation.SLASH
@@ -37,9 +25,6 @@ func set_animation_state(state: String):
 		"thrust":
 			stop()
 			current_animation = PlayerAnimation.THRUST
-			play_animation(current_animation)
-		"death":
-			current_animation = PlayerAnimation.DEATH
 			play_animation(current_animation)
 		_:
 			pass
