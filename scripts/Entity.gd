@@ -2,9 +2,9 @@ extends Node2D
 
 class_name Entity
 
-@onready var character: Character = $Character
-@onready var vfx: EntityVFX = $VFX
-@onready var health_bar: HealthBar = $"Health Bar"
+@export var character: Character
+@export var vfx: EntityVFX
+@export var health_bar: HealthBar
 
 signal area_clicked(target: Character)
 signal dead(target: Character)

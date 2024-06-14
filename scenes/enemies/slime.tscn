@@ -254,9 +254,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qfck0"]
 size = Vector2(40, 26)
 
-[node name="Slime" type="Node2D"]
+[node name="Slime" type="Node2D" node_paths=PackedStringArray("character", "vfx", "health_bar")]
 scale = Vector2(6, 6)
 script = ExtResource("1_2buqr")
+character = NodePath("Character")
+vfx = NodePath("VFX")
+health_bar = NodePath("Health Bar")
 
 [node name="Character" type="Node2D" parent="."]
 script = ExtResource("2_vxfnp")

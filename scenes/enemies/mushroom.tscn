@@ -219,9 +219,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2uxf7"]
 size = Vector2(34, 36)
 
-[node name="Mushroom" type="Node2D"]
+[node name="Mushroom" type="Node2D" node_paths=PackedStringArray("character", "vfx", "health_bar")]
 scale = Vector2(6, 6)
 script = ExtResource("1_7jjkv")
+character = NodePath("Character")
+vfx = NodePath("VFX")
+health_bar = NodePath("Health Bar")
 
 [node name="Character" type="Node2D" parent="."]
 script = ExtResource("2_g1y3e")
