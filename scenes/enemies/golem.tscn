@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bx2jj8fe54h4n"]
+[gd_scene load_steps=36 format=3 uid="uid://bx2jj8fe54h4n"]
 
 [ext_resource type="Script" path="res://scripts/enemies/golem/Golem.gd" id="1_87shi"]
 [ext_resource type="Script" path="res://scripts/enemies/golem/GolemCharacter.gd" id="2_nd7k1"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dt5f43x6el13e" path="res://assets/golem/Blue/White_Swoosh_VFX/Golem_1_hurt.png" id="4_ftu5s"]
 [ext_resource type="Script" path="res://scripts/enemies/golem/GolemVFX.gd" id="6_tcxy8"]
 [ext_resource type="Script" path="res://scripts/Hoverable.gd" id="7_kret0"]
+[ext_resource type="PackedScene" uid="uid://do8tcyo73564o" path="res://scenes/health_bar.tscn" id="8_co67a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_llb00"]
 atlas = ExtResource("3_x3plj")
@@ -223,6 +224,12 @@ script = ExtResource("7_kret0")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -19)
 shape = SubResource("RectangleShape2D_qfck0")
+
+[node name="Health Bar" parent="." instance=ExtResource("8_co67a")]
+offset_left = -20.0
+offset_top = -45.085
+offset_right = 20.0
+offset_bottom = -41.085
 
 [connection signal="dead" from="Character" to="VFX" method="_on_character_dead"]
 [connection signal="animation_finished" from="VFX" to="VFX" method="_on_animation_finished"]

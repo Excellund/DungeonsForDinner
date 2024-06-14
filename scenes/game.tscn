@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bdc1u3sbd01uv" path="res://scenes/player.tscn" id="1_5bd40"]
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_88qpl"]
-[ext_resource type="PackedScene" uid="uid://ixld64d5aqu" path="res://scenes/pause_menu.tscn" id="2_b1o27"]
+[ext_resource type="PackedScene" uid="uid://py1g2yjp0m27" path="res://scenes/pause_menu.tscn" id="2_b1o27"]
 [ext_resource type="Texture2D" uid="uid://chqpq40r8y643" path="res://assets/underworld.png" id="2_sxpan"]
 
 [node name="Game" type="Node2D"]

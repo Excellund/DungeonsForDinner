@@ -8,6 +8,7 @@ var max_health: int
 var is_dead: bool
 var nourishments: Array[Nourishment]
 
+signal health_changed(new_health: int)
 signal dead
 
 func _init(name, health, max_health):
@@ -18,11 +19,13 @@ func _init(name, health, max_health):
 
 func take_damage(amount: int):
 	self.health = max(health - amount, 0)
+	emit_signal("health_changed", self.health)
 	if health <= 0:
 		die()
 	
 func heal(amount: int) -> void:
 	self.health = min(health + amount, max_health)
+	emit_signal("health_changed", self.health)
 	
 func apply_nourishment(type: Nourishment, amount: int):
 	for nourishment in self.nourishments:

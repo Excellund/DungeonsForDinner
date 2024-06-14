@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ixld64d5aqu"]
+[gd_scene load_steps=5 format=3 uid="uid://py1g2yjp0m27"]
 
 [ext_resource type="Script" path="res://scripts/PauseMenu.gd" id="1_a8mhx"]
 [ext_resource type="FontFile" uid="uid://3sb0n88od4iq" path="res://assets/fonts/Minecraft.ttf" id="2_hlg5q"]

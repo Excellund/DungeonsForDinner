@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpk83yqaqalnm"]
+[gd_scene load_steps=5 format=3 uid="uid://bv0226g7g7yvp"]
 
 [ext_resource type="FontFile" uid="uid://3sb0n88od4iq" path="res://assets/fonts/Minecraft.ttf" id="1_8utgf"]
 [ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_xx7ro"]
