@@ -3,22 +3,27 @@ extends Container
 class_name Card
 
 
+@export_group("inner settings")
+@export var card_sprite: Sprite2D
+@export var animator: AnimationPlayer
+@export var rotation_speed: float = 0.0
+@export_category("CardData")
 @export var card_data: CardData: set = set_card_data
 
-@export var card_sprite: Sprite2D
-@export var rotation_speed: float = 0.0
-
 var card_name: String
+# vars for states
 var is_card_held: bool = false
 var is_rotating: bool = false
+# vars for rotation lerp
 var staring_angle: float = PI
 var desired_angle: float = 0.01
 var elapsed = 0
 var drag_offset: Vector2
-
-
-func _init(data):
-	card_data = data
+# vars for tweening
+var pre_hover_rotation: float = 0
+const TWEEN_TRANS_SPEED: float = 1
+const TWEEN_ROTATION_SPEED: float = 1
+const TWEEN_HOVER_ROTATION_SPEED: float = 0.25
 
 
 func _process(delta):
@@ -33,12 +38,42 @@ func _process(delta):
 			elapsed = 0
 
 
+func move_to_from(from_pos, target_pos, from_rot, target_rot):
+	pre_hover_rotation = target_rot
+	print(from_pos, target_pos, from_rot," ", target_rot)
+	var tween = get_tree().create_tween()
+	
+	tween.parallel().tween_property(self,"global_position",target_pos,TWEEN_TRANS_SPEED)\
+	.from(from_pos).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	
+	tween.parallel().tween_property(card_sprite,"rotation",target_rot,TWEEN_ROTATION_SPEED)\
+	.from(from_rot).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	
+	return tween
+
+
+func move_to_from_current(target_pos, target_rot):
+	pre_hover_rotation = target_rot
+	var tween = get_tree().create_tween()
+	
+	tween.parallel().tween_property(self,"global_position",target_pos,TWEEN_TRANS_SPEED).from_current()
+	tween.parallel().tween_property(card_sprite,"rotation",target_rot,TWEEN_HOVER_ROTATION_SPEED).from_current()
+	
+	return tween
+
+
 func _on_mouse_entered():
-	pass # Replace with function body.
+	card_sprite.z_index = 10
+	animator.play("Hover")
+	var tween = get_tree().create_tween()
+	tween.parallel().tween_property(card_sprite,"rotation",0,TWEEN_HOVER_ROTATION_SPEED).from_current()
 
 
 func _on_mouse_exited():
-	pass # Replace with function body.
+	card_sprite.z_index = 1
+	animator.play("Unhover")
+	var tween = get_tree().create_tween()
+	tween.parallel().tween_property(card_sprite,"rotation",pre_hover_rotation,TWEEN_HOVER_ROTATION_SPEED).from_current()
 
 
 func _on_gui_input(event):
