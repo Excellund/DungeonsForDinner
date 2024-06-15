@@ -9,6 +9,8 @@ enum PlayerAnimation {
 func play_animation(animation):
 	super.play_animation(animation)
 	match animation:
+		State.HURT:
+			set_animation_state("idle")
 		PlayerAnimation.THRUST:
 			play("thrust")
 
