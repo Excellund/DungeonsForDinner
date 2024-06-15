@@ -9,6 +9,26 @@
 [ext_resource type="Script" path="res://scripts/Hoverable.gd" id="7_nihci"]
 [ext_resource type="PackedScene" uid="uid://do8tcyo73564o" path="res://scenes/health_bar.tscn" id="8_1d7dx"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_gyfj5"]
+atlas = ExtResource("3_g0okb")
+region = Rect2(0, 0, 408, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6mxo"]
+atlas = ExtResource("3_g0okb")
+region = Rect2(408, 0, 408, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lulka"]
+atlas = ExtResource("3_g0okb")
+region = Rect2(0, 288, 408, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ubybh"]
+atlas = ExtResource("3_g0okb")
+region = Rect2(408, 288, 408, 288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xyonl"]
+atlas = ExtResource("3_g0okb")
+region = Rect2(0, 576, 408, 288)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_yfe33"]
 atlas = ExtResource("1_aonty")
 region = Rect2(0, 0, 408, 288)
@@ -57,26 +77,6 @@ region = Rect2(0, 1152, 408, 288)
 atlas = ExtResource("1_r01yp")
 region = Rect2(0, 1440, 408, 288)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gyfj5"]
-atlas = ExtResource("3_g0okb")
-region = Rect2(0, 0, 408, 288)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e6mxo"]
-atlas = ExtResource("3_g0okb")
-region = Rect2(408, 0, 408, 288)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lulka"]
-atlas = ExtResource("3_g0okb")
-region = Rect2(0, 288, 408, 288)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ubybh"]
-atlas = ExtResource("3_g0okb")
-region = Rect2(408, 288, 408, 288)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xyonl"]
-atlas = ExtResource("3_g0okb")
-region = Rect2(0, 576, 408, 288)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_7gwh7"]
 atlas = ExtResource("3_g0okb")
 region = Rect2(408, 1152, 408, 288)
@@ -99,6 +99,26 @@ region = Rect2(408, 1728, 408, 288)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v4dnl"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gyfj5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6mxo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lulka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ubybh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xyonl")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yfe33")
@@ -147,26 +167,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gyfj5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e6mxo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lulka")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ubybh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xyonl")
-}],
-"loop": false,
-"name": &"slash",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_7gwh7")
 }, {
 "duration": 1.0,
@@ -202,8 +202,7 @@ script = ExtResource("2_7ah1p")
 
 [node name="VFX" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_v4dnl")
-animation = &"idle"
-frame_progress = 0.62562
+animation = &"attack"
 script = ExtResource("6_5uewr")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -220,5 +219,6 @@ offset_right = -28.0
 offset_bottom = -116.0
 scale = Vector2(3, 3)
 
+[connection signal="dead" from="Character" to="VFX" method="_on_character_dead"]
 [connection signal="animation_finished" from="VFX" to="VFX" method="_on_animation_finished"]
 [connection signal="input_event" from="Area2D" to="Area2D" method="_on_input_event"]

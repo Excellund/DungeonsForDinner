@@ -27,6 +27,9 @@ func heal(amount: int) -> void:
 	self.health = min(health + amount, max_health)
 	emit_signal("health_changed", self.health)
 	
+func attack(target: Character):
+	pass
+	
 func apply_nourishment(type: Nourishment, amount: int):
 	for nourishment in self.nourishments:
 		if nourishment.name == type.name:

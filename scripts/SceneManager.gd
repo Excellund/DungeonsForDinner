@@ -8,8 +8,6 @@ enum SceneType {
 	GAME
 }
 
-var current_scene
-
 func _ready():
 	load_scene(SceneType.MAIN_MENU)
 

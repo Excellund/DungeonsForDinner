@@ -1,13 +1,50 @@
-[gd_scene load_steps=43 format=3 uid="uid://bbfpmjly1lev5"]
+[gd_scene load_steps=53 format=3 uid="uid://bbfpmjly1lev5"]
 
 [ext_resource type="Script" path="res://scripts/enemies/slime/Slime.gd" id="1_2buqr"]
 [ext_resource type="Script" path="res://scripts/enemies/slime/SlimeCharacter.gd" id="2_vxfnp"]
 [ext_resource type="Texture2D" uid="uid://b8n5vi2f6xpve" path="res://assets/slime/death/Sprite Sheet - Green Death.png" id="3_fg0oy"]
+[ext_resource type="Texture2D" uid="uid://du6mxpelpnlvr" path="res://assets/slime/jump/Sprite Sheet - Green Jump Start-up.png" id="3_ktn50"]
 [ext_resource type="Texture2D" uid="uid://cfmaj0x3efvkt" path="res://assets/slime/hurt/Sprite Sheet - Green Hurt.png" id="4_xrxbn"]
 [ext_resource type="Texture2D" uid="uid://bx1nvxlc88ixi" path="res://assets/slime/idle/Sprite Sheet - Green Idle.png" id="5_fimeq"]
 [ext_resource type="Script" path="res://scripts/enemies/slime/SlimeVFX.gd" id="6_y480h"]
 [ext_resource type="Script" path="res://scripts/Hoverable.gd" id="7_6pdpx"]
 [ext_resource type="PackedScene" uid="uid://do8tcyo73564o" path="res://scenes/health_bar.tscn" id="8_g7myi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4dhjo"]
+atlas = ExtResource("3_ktn50")
+region = Rect2(0, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ocpxf"]
+atlas = ExtResource("3_ktn50")
+region = Rect2(96, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pc83k"]
+atlas = ExtResource("3_ktn50")
+region = Rect2(192, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7pmp"]
+atlas = ExtResource("3_ktn50")
+region = Rect2(288, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2uour"]
+atlas = ExtResource("3_ktn50")
+region = Rect2(384, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rckrg"]
+atlas = ExtResource("3_ktn50")
+region = Rect2(480, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ptag"]
+atlas = ExtResource("3_ktn50")
+region = Rect2(576, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7ea1"]
+atlas = ExtResource("3_ktn50")
+region = Rect2(672, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dhgm"]
+atlas = ExtResource("3_ktn50")
+region = Rect2(768, 0, 96, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c4xbq"]
 atlas = ExtResource("3_fg0oy")
@@ -141,6 +178,38 @@ region = Rect2(576, 0, 96, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_4dhjo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ocpxf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pc83k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7pmp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2uour")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rckrg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ptag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7ea1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8dhgm")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_c4xbq")
 }, {
 "duration": 1.0,
@@ -267,7 +336,9 @@ script = ExtResource("2_vxfnp")
 [node name="VFX" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_ho5kr")
-animation = &"death"
+animation = &"attack"
+frame = 8
+frame_progress = 1.0
 script = ExtResource("6_y480h")
 
 [node name="Area2D" type="Area2D" parent="."]

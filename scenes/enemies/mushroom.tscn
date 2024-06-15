@@ -1,13 +1,54 @@
-[gd_scene load_steps=38 format=3 uid="uid://cepmt16tlu35x"]
+[gd_scene load_steps=49 format=3 uid="uid://cepmt16tlu35x"]
 
 [ext_resource type="Script" path="res://scripts/enemies/mushroom/Mushroom.gd" id="1_7jjkv"]
 [ext_resource type="Script" path="res://scripts/enemies/mushroom/MushroomCharacter.gd" id="2_g1y3e"]
+[ext_resource type="Texture2D" uid="uid://c7hw67fdob222" path="res://assets/mushroom/Mushroom-Attack.png" id="3_3q7yv"]
 [ext_resource type="Texture2D" uid="uid://dsy3gbcnpr706" path="res://assets/mushroom/Mushroom-Die.png" id="3_wscce"]
 [ext_resource type="Texture2D" uid="uid://7fhcq5ji6835" path="res://assets/mushroom/Mushroom-Hit.png" id="4_b1yk7"]
 [ext_resource type="Texture2D" uid="uid://b3men5nk28jk4" path="res://assets/mushroom/Mushroom-Idle.png" id="5_t5rgm"]
 [ext_resource type="Script" path="res://scripts/enemies/mushroom/MushroomVFX.gd" id="6_bdka3"]
 [ext_resource type="Script" path="res://scripts/Hoverable.gd" id="7_evaxn"]
 [ext_resource type="PackedScene" uid="uid://do8tcyo73564o" path="res://scenes/health_bar.tscn" id="8_rqwgo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7oaxf"]
+atlas = ExtResource("3_3q7yv")
+region = Rect2(0, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmvgf"]
+atlas = ExtResource("3_3q7yv")
+region = Rect2(80, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1m0lc"]
+atlas = ExtResource("3_3q7yv")
+region = Rect2(160, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8jck"]
+atlas = ExtResource("3_3q7yv")
+region = Rect2(240, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1k4s"]
+atlas = ExtResource("3_3q7yv")
+region = Rect2(320, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywd5f"]
+atlas = ExtResource("3_3q7yv")
+region = Rect2(400, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gpmf"]
+atlas = ExtResource("3_3q7yv")
+region = Rect2(480, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rbrna"]
+atlas = ExtResource("3_3q7yv")
+region = Rect2(560, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1n80x"]
+atlas = ExtResource("3_3q7yv")
+region = Rect2(640, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7pj5"]
+atlas = ExtResource("3_3q7yv")
+region = Rect2(720, 0, 80, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_km7qd"]
 atlas = ExtResource("3_wscce")
@@ -121,6 +162,41 @@ region = Rect2(480, 0, 80, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_7oaxf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mmvgf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1m0lc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8jck")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1k4s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywd5f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gpmf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rbrna")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1n80x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7pj5")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_km7qd")
 }, {
 "duration": 1.0,
@@ -232,9 +308,7 @@ script = ExtResource("2_g1y3e")
 [node name="VFX" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_ak7fo")
-animation = &"death"
-frame = 14
-frame_progress = 1.0
+animation = &"attack"
 script = ExtResource("6_bdka3")
 
 [node name="Area2D" type="Area2D" parent="."]

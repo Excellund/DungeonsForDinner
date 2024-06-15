@@ -6,11 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://chqpq40r8y643" path="res://assets/underworld.png" id="2_sxpan"]
 [ext_resource type="PackedScene" uid="uid://d0n583wftgd7a" path="res://scenes/end_turn.tscn" id="5_d12c0"]
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("player", "end_turn_button", "timer")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("player", "end_turn_button")]
 script = ExtResource("1_88qpl")
 player = NodePath("Player")
 end_turn_button = NodePath("End Turn")
-timer = NodePath("Timer")
 
 [node name="Pause Menu" parent="." instance=ExtResource("2_b1o27")]
 top_level = true
@@ -34,6 +33,3 @@ offset_top = 38.0
 offset_right = 1619.0
 offset_bottom = 78.0
 scale = Vector2(3, 3)
-
-[node name="Timer" type="Timer" parent="."]
-one_shot = true

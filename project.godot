@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 _SceneManager="*res://scripts/SceneManager.gd"
 _EncounterManager="*res://scripts/EncounterManager.gd"
+TurnManager="*res://scripts/TurnManager.gd"
 
 [debug]
 
