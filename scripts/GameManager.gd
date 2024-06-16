@@ -43,6 +43,7 @@ func next_encounter():
 func _on_end_turn_button_pressed():
 	TurnManager.change_turn()
 	end_turn_button.text = "Enemy Turn"
+	end_turn_button.disabled = true
 	for enemy in enemies:
 		enemy.attack(player)
 	timer.start()
@@ -50,3 +51,4 @@ func _on_end_turn_button_pressed():
 func _on_timer_timeout():
 	TurnManager.change_turn()
 	end_turn_button.text = "End Turn"
+	end_turn_button.disabled = false
