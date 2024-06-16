@@ -11,7 +11,7 @@ const UPRIGHT_ROTATION: float = 0.0
 const LEFT_ROTATION: float = PI/2
 const MAX_HAND_ROTATION: float = PI/12
 
-
+# TODO unneeded?
 func add_card_to_hand(new_card:Card, from_pos:Vector2):
 	hand_size += 1
 	reorder_hand()
@@ -36,12 +36,14 @@ func remove_card_from_hand(card:Card, to_pos:Vector2):
 	tween.connect("finished", reorder_hand)
 
 
-func remove_all_card_from_hand(to_pos:Vector2):
+func remove_all_card_from_hand(to_pos:Vector2) -> Array[Card]:
 	hand_size = 0
+	var removed_cards : Array[Card] = []
 	for card:Card in self.get_children():
+		removed_cards.append(card)
 		var tween = card.move_to_from_current(to_pos, LEFT_ROTATION)
 		tween.connect("finished", _unchild_card.bind(card))
-
+	return removed_cards
 
 func get_adjusted_card_placment(card:Card):
 	var card_destination := self.global_position

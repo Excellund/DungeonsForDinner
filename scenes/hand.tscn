@@ -22,12 +22,7 @@ test_card = NodePath("../Card5")
 
 [node name="Card2" parent="Hand" instance=ExtResource("1_e31qp")]
 
-[node name="Card3" parent="Hand" instance=ExtResource("1_e31qp")]
-card_data = ExtResource("4_87mqd")
-
 [node name="Card" parent="Hand" instance=ExtResource("1_e31qp")]
-
-[node name="Card4" parent="Hand" instance=ExtResource("1_e31qp")]
 
 [node name="DrawPile" parent="." instance=ExtResource("4_s673h")]
 anchors_preset = 8
@@ -73,10 +68,34 @@ offset_right = 286.0
 offset_bottom = 180.0
 card_data = ExtResource("4_87mqd")
 
-[node name="CardManager" type="Node" parent="." node_paths=PackedStringArray("deck", "discard")]
+[node name="CardManager" type="Node" parent="." node_paths=PackedStringArray("deck", "hand", "discard")]
 script = ExtResource("5_frnww")
 deck = NodePath("../DrawPile")
+hand = NodePath("../Hand")
 discard = NodePath("../DiscardPile")
+
+[node name="PopDeck" type="Button" parent="."]
+offset_left = 10.0
+offset_top = 80.0
+offset_right = 89.0
+offset_bottom = 111.0
+text = "pop deck"
+
+[node name="NewHand" type="Button" parent="."]
+offset_left = 6.0
+offset_top = 117.0
+offset_right = 91.0
+offset_bottom = 148.0
+text = "new hand"
+
+[node name="DumpHand" type="Button" parent="."]
+offset_top = 148.0
+offset_right = 98.0
+offset_bottom = 179.0
+text = "dump hand"
 
 [connection signal="pressed" from="Button" to="Hand" method="_on_button_pressed"]
 [connection signal="pressed" from="Button2" to="Hand" method="_on_button_2_pressed"]
+[connection signal="pressed" from="PopDeck" to="CardManager" method="_on_pop_deck_pressed"]
+[connection signal="pressed" from="NewHand" to="CardManager" method="_on_new_hand_pressed"]
+[connection signal="pressed" from="DumpHand" to="CardManager" method="_on_dump_hand_pressed"]
