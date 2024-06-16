@@ -2,6 +2,7 @@ extends Container
 
 class_name Card
 
+signal card_used(card_data: CardData, is_attack_side: bool)
 
 @export_group("inner settings")
 @export var card_sprite: Sprite2D
@@ -14,6 +15,7 @@ var card_name: String
 # vars for states
 var is_card_held: bool = false
 var is_rotating: bool = false
+var is_attack_side: bool = true
 # vars for rotation lerp
 var staring_angle: float = PI
 var desired_angle: float = 0.01
@@ -21,6 +23,7 @@ var elapsed = 0
 var drag_offset: Vector2
 # vars for tweening
 var pre_hover_rotation: float = 0
+var pre_held_position: Vector2
 const TWEEN_TRANS_SPEED: float = 1
 const TWEEN_ROTATION_SPEED: float = 1
 const TWEEN_HOVER_ROTATION_SPEED: float = 0.25
@@ -80,12 +83,16 @@ func _on_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		# check if LMB is pressed and allow the card to be moved
 		if event.button_mask == MOUSE_BUTTON_MASK_LEFT:
+			pre_held_position = self.global_position 
 			is_card_held = true
 			# set offset so card is dragged from where the user clicked
 			drag_offset = get_global_mouse_position() - global_position
 		# check if LMB is relesed and stop the card from moving
 		else:
 			is_card_held = false
+			card_used.emit(self.card_data, is_attack_side)
+			#await no_target
+			
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
 		#check if RMB is pressed and we're nor currently rotating
 		if event.button_mask & MOUSE_BUTTON_MASK_RIGHT and not is_rotating:
@@ -93,6 +100,7 @@ func _on_gui_input(event):
 			desired_angle = staring_angle
 			staring_angle = temp
 			is_rotating = true
+			is_attack_side = not is_attack_side
 
 
 func set_card_data(data: CardData):
