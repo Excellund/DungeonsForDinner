@@ -6,9 +6,9 @@ enum PlayerAnimation {
 	THRUST = 4
 }
 
-func play_animation(animation):
-	super.play_animation(animation)
-	match animation:
+func play_animation(new_animation):
+	super.play_animation(new_animation)
+	match new_animation:
 		State.HURT:
 			set_animation_state("idle")
 		PlayerAnimation.THRUST:

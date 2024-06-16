@@ -8,9 +8,6 @@ enum SceneType {
 	GAME
 }
 
-func _ready():
-	load_scene(SceneType.MAIN_MENU)
-
 func load_scene(scene_type: SceneType):
 	match scene_type:
 		SceneType.MAIN_MENU:

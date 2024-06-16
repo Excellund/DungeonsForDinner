@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bv0226g7g7yvp"]
 
 [ext_resource type="FontFile" uid="uid://3sb0n88od4iq" path="res://assets/fonts/Minecraft.ttf" id="1_8utgf"]
-[ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_xx7ro"]
+[ext_resource type="Script" path="res://scripts/ui/MainMenu.gd" id="1_sgeb1"]
 
 [sub_resource type="Gradient" id="Gradient_ecte3"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -21,12 +21,15 @@ offset_bottom = 1080.0
 size_flags_vertical = 0
 texture = SubResource("GradientTexture2D_2f4w2")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." node_paths=PackedStringArray("expedition", "options", "exit")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
-script = ExtResource("1_xx7ro")
+script = ExtResource("1_sgeb1")
+expedition = NodePath("Expedition")
+options = NodePath("Options")
+exit = NodePath("Exit")
 
 [node name="Expedition" type="Button" parent="Control"]
 layout_mode = 1
@@ -78,7 +81,3 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_8utgf")
 theme_override_font_sizes/font_size = 48
 text = "Exit"
-
-[connection signal="pressed" from="Control/Expedition" to="Control" method="_on_expedition_pressed"]
-[connection signal="pressed" from="Control/Options" to="Control" method="_on_options_pressed"]
-[connection signal="pressed" from="Control/Exit" to="Control" method="_on_exit_pressed"]

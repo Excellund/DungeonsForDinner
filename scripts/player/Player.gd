@@ -2,6 +2,10 @@ extends Entity
 
 class_name Player
 
+func _ready():
+	super._ready()
+	SignalBus.entity_clicked.connect(_on_entity_clicked)
+
 func _input(event):
 	if not can_attack():
 		return;
@@ -9,7 +13,7 @@ func _input(event):
 	if event.is_action_pressed("right_click"):
 		vfx.set_animation_state("thrust")
 
-func _on_enemy_clicked(target: Entity):
+func _on_entity_clicked(target: Entity):
 	if not can_attack():
 		return;
 	

@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://wat4qw0g3ioe"]
+[gd_scene load_steps=6 format=3 uid="uid://xsm8ktqo3llr"]
 
 [ext_resource type="PackedScene" uid="uid://dut3eu6qebkab" path="res://scenes/card.tscn" id="1_e31qp"]
 [ext_resource type="Script" path="res://scripts/Hand.gd" id="1_wf3tu"]
-[ext_resource type="Resource" uid="uid://be4g8p4n43mb" path="res://resources/Cards/test_card2.tres" id="4_87mqd"]
 [ext_resource type="PackedScene" uid="uid://d1ela5g6cb4ho" path="res://scenes/card_pile.tscn" id="4_s673h"]
 [ext_resource type="Script" path="res://scripts/CardManager.gd" id="5_frnww"]
 
@@ -21,8 +20,10 @@ HAND_HEIGHT = 15
 test_card = NodePath("../Card5")
 
 [node name="Card2" parent="Hand" instance=ExtResource("1_e31qp")]
+rotation_speed = 0.0
 
 [node name="Card" parent="Hand" instance=ExtResource("1_e31qp")]
+rotation_speed = 0.0
 
 [node name="DrawPile" parent="." instance=ExtResource("4_s673h")]
 anchors_preset = 8
@@ -66,7 +67,7 @@ offset_left = 190.0
 offset_top = 52.0
 offset_right = 286.0
 offset_bottom = 180.0
-card_data = ExtResource("4_87mqd")
+rotation_speed = 0.0
 
 [node name="CardManager" type="Node" parent="." node_paths=PackedStringArray("deck", "hand", "discard")]
 script = ExtResource("5_frnww")

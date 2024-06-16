@@ -217,3 +217,7 @@ offset_top = -120.0
 offset_right = -28.0
 offset_bottom = -116.0
 scale = Vector2(3, 3)
+
+[connection signal="dead" from="Character" to="VFX" method="_on_character_dead"]
+[connection signal="animation_finished" from="VFX" to="VFX" method="_on_animation_finished"]
+[connection signal="input_event" from="Area2D" to="Area2D" method="_on_input_event"]

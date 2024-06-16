@@ -2,7 +2,8 @@ extends Nourishment
 
 class_name SlimeSauce
 
-const NAME: String = "Slime Sauce"
+func _init(name: String = "Slime Sauce", is_permanent: bool = false, amount: int = 10):
+	super._init(name, is_permanent, amount)
 
-func _init():
-	super._init(NAME, false, 1)
+func act():
+	

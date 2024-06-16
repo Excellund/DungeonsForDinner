@@ -17,9 +17,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-_SceneManager="*res://scripts/SceneManager.gd"
-_EncounterManager="*res://scripts/EncounterManager.gd"
-TurnManager="*res://scripts/TurnManager.gd"
+_SceneManager="*res://scripts/managers/SceneManager.gd"
+_EncounterManager="*res://scripts/managers/EncounterManager.gd"
+TurnManager="*res://scripts/managers/TurnManager.gd"
+SignalBus="*res://scripts/SignalBus.gd"
 
 [debug]
 

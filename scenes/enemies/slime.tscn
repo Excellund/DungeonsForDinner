@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://bbfpmjly1lev5"]
+[gd_scene load_steps=52 format=3 uid="uid://bbfpmjly1lev5"]
 
 [ext_resource type="Script" path="res://scripts/enemies/slime/Slime.gd" id="1_2buqr"]
 [ext_resource type="Script" path="res://scripts/enemies/slime/SlimeCharacter.gd" id="2_vxfnp"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://cfmaj0x3efvkt" path="res://assets/slime/hurt/Sprite Sheet - Green Hurt.png" id="4_xrxbn"]
 [ext_resource type="Texture2D" uid="uid://bx1nvxlc88ixi" path="res://assets/slime/idle/Sprite Sheet - Green Idle.png" id="5_fimeq"]
 [ext_resource type="Script" path="res://scripts/enemies/slime/SlimeVFX.gd" id="6_y480h"]
-[ext_resource type="Script" path="res://scripts/Hoverable.gd" id="7_6pdpx"]
 [ext_resource type="PackedScene" uid="uid://do8tcyo73564o" path="res://scenes/health_bar.tscn" id="8_g7myi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4dhjo"]
@@ -323,12 +322,13 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qfck0"]
 size = Vector2(40, 26)
 
-[node name="Slime" type="Node2D" node_paths=PackedStringArray("character", "vfx", "health_bar")]
+[node name="Slime" type="Node2D" node_paths=PackedStringArray("character", "vfx", "health_bar", "area")]
 scale = Vector2(6, 6)
 script = ExtResource("1_2buqr")
 character = NodePath("Character")
 vfx = NodePath("VFX")
 health_bar = NodePath("Health Bar")
+area = NodePath("Area2D")
 
 [node name="Character" type="Node2D" parent="."]
 script = ExtResource("2_vxfnp")
@@ -336,13 +336,10 @@ script = ExtResource("2_vxfnp")
 [node name="VFX" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_ho5kr")
-animation = &"attack"
-frame = 8
-frame_progress = 1.0
+animation = &"idle"
 script = ExtResource("6_y480h")
 
 [node name="Area2D" type="Area2D" parent="."]
-script = ExtResource("7_6pdpx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -10.175)
@@ -353,8 +350,3 @@ offset_left = -20.0
 offset_top = -34.0
 offset_right = 20.0
 offset_bottom = -30.0
-
-[connection signal="dead" from="Character" to="VFX" method="_on_character_dead"]
-[connection signal="animation_finished" from="VFX" to="VFX" method="_on_animation_finished"]
-[connection signal="area_clicked" from="Area2D" to="." method="_on_area_clicked"]
-[connection signal="input_event" from="Area2D" to="Area2D" method="_on_input_event"]

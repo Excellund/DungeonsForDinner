@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://py1g2yjp0m27"]
 
-[ext_resource type="Script" path="res://scripts/PauseMenu.gd" id="1_a8mhx"]
+[ext_resource type="Script" path="res://scripts/ui/PauseMenu.gd" id="1_hgq43"]
 [ext_resource type="FontFile" uid="uid://3sb0n88od4iq" path="res://assets/fonts/Minecraft.ttf" id="2_hlg5q"]
 
 [sub_resource type="Gradient" id="Gradient_s2ynt"]
@@ -13,9 +13,12 @@ height = 360
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="Pause Menu" type="Node2D"]
+[node name="Pause Menu" type="Node2D" node_paths=PackedStringArray("resume", "options", "main_menu")]
 visible = false
-script = ExtResource("1_a8mhx")
+script = ExtResource("1_hgq43")
+resume = NodePath("Control/Resume")
+options = NodePath("Control/Options")
+main_menu = NodePath("Control/Main Menu")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 1920.0
@@ -80,7 +83,3 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_hlg5q")
 theme_override_font_sizes/font_size = 48
 text = "Main Menu"
-
-[connection signal="pressed" from="Control/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="Control/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="Control/Main Menu" to="." method="_on_main_menu_pressed"]

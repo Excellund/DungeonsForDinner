@@ -13,13 +13,7 @@ func _ready():
 	end_turn_button.text = "End Turn"
 	end_turn_button.pressed.connect(self._on_end_turn_button_pressed)
 	timer.timeout.connect(self._on_timer_timeout)
-	next_encounter()
-		
-func _on_entity_death(character: Character):
-	for enemy: Entity in enemies:
-		if not enemy.character.is_dead:
-			return
-	
+	SignalBus.death_animation_finished.connect(_on_entity_death)
 	next_encounter()
 
 func setup_encounter(new_encounter: Encounter):
@@ -32,13 +26,19 @@ func setup_encounter(new_encounter: Encounter):
 	for i in range(encounter.enemies.size()):
 		var enemy_instance: Entity = encounter.enemies[i].instantiate()
 		enemy_instance.position = encounter.locations[i]
-		enemy_instance.area_clicked.connect(player._on_enemy_clicked)
-		enemy_instance.dead.connect(self._on_entity_death)
 		enemies.append(enemy_instance)
 		add_child(enemy_instance)
 	
 func next_encounter():
 	setup_encounter(_EncounterManager.get_random_encounter())
+	
+func _on_entity_death(_reference: EntityVFX):
+	for enemy: Entity in enemies:
+		if not enemy.character.is_dead:
+			return
+	
+	SignalBus.end_of_encounter.emit()
+	next_encounter()
 	
 func _on_end_turn_button_pressed():
 	TurnManager.change_turn()

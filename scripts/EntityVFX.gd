@@ -2,8 +2,6 @@ extends AnimatedSprite2D
 
 class_name EntityVFX
 
-signal death_animation_finished
-
 enum State {
 	IDLE,
 	HURT,
@@ -14,10 +12,11 @@ enum State {
 var current_animation = State.IDLE
 
 func _ready():
+	animation_finished.connect(_on_animation_finished)
 	play_animation(State.IDLE)
 	
-func play_animation(animation):
-	match animation:
+func play_animation(new_animation):
+	match new_animation:
 		State.IDLE:
 			play("idle")
 		State.HURT:
@@ -54,7 +53,4 @@ func _on_animation_finished():
 		State.HURT, State.ATTACK:
 			set_animation_state("idle")
 		State.DEATH:
-			emit_signal("death_animation_finished")
-
-func _on_character_dead():
-	set_animation_state("death")
+			SignalBus.death_animation_finished.emit(self)

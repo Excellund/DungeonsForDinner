@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://do8tcyo73564o"]
 
-[ext_resource type="Script" path="res://scripts/HealthBar.gd" id="1_kc5ek"]
+[ext_resource type="Script" path="res://scripts/ui/HealthBar.gd" id="1_n5xg8"]
 [ext_resource type="FontFile" uid="uid://3sb0n88od4iq" path="res://assets/fonts/Minecraft.ttf" id="2_3aifd"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r5fc7"]
@@ -20,7 +20,7 @@ shadow_offset = Vector2(0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_joi27"]
 bg_color = Color(1, 1, 1, 1)
 
-[node name="Health Bar" type="ProgressBar"]
+[node name="Health Bar" type="ProgressBar" node_paths=PackedStringArray("damage_bar", "timer", "label")]
 z_index = 1
 offset_right = 240.0
 offset_bottom = 4.0
@@ -28,7 +28,10 @@ theme_override_styles/background = SubResource("StyleBoxEmpty_r5fc7")
 theme_override_styles/fill = SubResource("StyleBoxFlat_sp6vf")
 value = 60.0
 show_percentage = false
-script = ExtResource("1_kc5ek")
+script = ExtResource("1_n5xg8")
+damage_bar = NodePath("Damage Bar")
+timer = NodePath("Timer")
+label = NodePath("Label")
 
 [node name="Damage Bar" type="ProgressBar" parent="."]
 z_index = -1
@@ -56,5 +59,3 @@ offset_bottom = 17.0
 scale = Vector2(0.33, 0.33)
 theme_override_fonts/font = ExtResource("2_3aifd")
 theme_override_font_sizes/font_size = 16
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

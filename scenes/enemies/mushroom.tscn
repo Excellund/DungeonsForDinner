@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://cepmt16tlu35x"]
+[gd_scene load_steps=48 format=3 uid="uid://cepmt16tlu35x"]
 
 [ext_resource type="Script" path="res://scripts/enemies/mushroom/Mushroom.gd" id="1_7jjkv"]
 [ext_resource type="Script" path="res://scripts/enemies/mushroom/MushroomCharacter.gd" id="2_g1y3e"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://7fhcq5ji6835" path="res://assets/mushroom/Mushroom-Hit.png" id="4_b1yk7"]
 [ext_resource type="Texture2D" uid="uid://b3men5nk28jk4" path="res://assets/mushroom/Mushroom-Idle.png" id="5_t5rgm"]
 [ext_resource type="Script" path="res://scripts/enemies/mushroom/MushroomVFX.gd" id="6_bdka3"]
-[ext_resource type="Script" path="res://scripts/Hoverable.gd" id="7_evaxn"]
 [ext_resource type="PackedScene" uid="uid://do8tcyo73564o" path="res://scenes/health_bar.tscn" id="8_rqwgo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7oaxf"]
@@ -295,12 +294,13 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2uxf7"]
 size = Vector2(34, 36)
 
-[node name="Mushroom" type="Node2D" node_paths=PackedStringArray("character", "vfx", "health_bar")]
+[node name="Mushroom" type="Node2D" node_paths=PackedStringArray("character", "vfx", "health_bar", "area")]
 scale = Vector2(6, 6)
 script = ExtResource("1_7jjkv")
 character = NodePath("Character")
 vfx = NodePath("VFX")
 health_bar = NodePath("Health Bar")
+area = NodePath("Area2D")
 
 [node name="Character" type="Node2D" parent="."]
 script = ExtResource("2_g1y3e")
@@ -312,7 +312,6 @@ animation = &"attack"
 script = ExtResource("6_bdka3")
 
 [node name="Area2D" type="Area2D" parent="."]
-script = ExtResource("7_evaxn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -17)
@@ -323,8 +322,3 @@ offset_left = -17.0
 offset_top = -42.0
 offset_right = 17.0
 offset_bottom = -38.0
-
-[connection signal="dead" from="Character" to="VFX" method="_on_character_dead"]
-[connection signal="animation_finished" from="VFX" to="VFX" method="_on_animation_finished"]
-[connection signal="area_clicked" from="Area2D" to="." method="_on_area_clicked"]
-[connection signal="input_event" from="Area2D" to="Area2D" method="_on_input_event"]

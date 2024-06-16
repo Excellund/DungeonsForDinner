@@ -8,9 +8,8 @@ const STARTING_HEALTH_MIN = 26
 const DAMAGE = 7
 
 func _init():
-	self.character_name = NAME
-	self.max_health = randi_range(STARTING_HEALTH_MIN, STARTING_HEALTH_MAX)
-	self.health = self.max_health
+	var starting_health = randi_range(STARTING_HEALTH_MIN, STARTING_HEALTH_MAX)
+	super._init(NAME, starting_health, starting_health, CharacterType.PLANT)
 
 func attack(target: Character):
 	DamageAction.new(DAMAGE, target)

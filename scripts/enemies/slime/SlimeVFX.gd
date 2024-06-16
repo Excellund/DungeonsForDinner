@@ -4,8 +4,8 @@ class_name SlimeVFX
 
 var is_attack_reversed: bool = false
 
-func play_animation(animation):
-	match animation:
+func play_animation(new_animation):
+	match new_animation:
 		State.IDLE:
 			play("idle")
 		State.HURT:
@@ -29,4 +29,4 @@ func _on_animation_finished():
 				play_backwards("attack")
 				is_attack_reversed = true
 		State.DEATH:
-			emit_signal("death_animation_finished")
+			SignalBus.death_animation_finished.emit(self)
