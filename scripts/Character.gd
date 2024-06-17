@@ -38,13 +38,13 @@ func heal(amount: int):
 func attack(_target: Character):
 	pass
 	
-func apply_nourishment(type: Nourishment, amount: int):
+func apply_nourishment(new_nourishment: Nourishment, amount: int):
 	for nourishment in self.nourishments:
-		if nourishment.name == type.name:
+		if nourishment.nourishment_name == new_nourishment.nourishment_name:
 			nourishment.amount += amount
 			return
 
-	nourishments.append({"type": type, "amount": amount})
+	nourishments.append(new_nourishment)
 	
 func decrease_nourishments():
 	for nourishment in self.nourishments:

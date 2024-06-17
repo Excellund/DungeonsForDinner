@@ -41,9 +41,9 @@ project/assembly_name="DungeonsForDinner"
 
 folder_colors={
 "res://assets/": "red",
-"res://resources/": "green",
-"res://scenes/": "orange",
-"res://scripts/": "yellow"
+"res://resources/": "orange",
+"res://scenes/": "yellow",
+"res://scripts/": "green"
 }
 
 [input]

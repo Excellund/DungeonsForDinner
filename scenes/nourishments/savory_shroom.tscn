@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c612b1322ajw4"]
+
+[ext_resource type="Texture2D" uid="uid://bmy8x7tamee46" path="res://assets/Pixel Art Icon Pack - RPG/Food/Mushroom.png" id="1_ec0md"]
+[ext_resource type="Script" path="res://scripts/nourishments/SavoryShroom.gd" id="2_0akri"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_amgc7"]
+size = Vector2(32, 32)
+
+[node name="Savory Shroom" type="TextureRect"]
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("1_ec0md")
+script = ExtResource("2_0akri")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_amgc7")

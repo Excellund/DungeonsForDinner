@@ -10,6 +10,8 @@ _data = [Vector2(0, 1), 0.0, -4.83129, 0, 0, Vector2(0.514851, -0.010989), 0.0, 
 point_count = 3
 
 [node name="CardArea" type="Node2D"]
+visible = false
+scale = Vector2(2, 2)
 
 [node name="Hand" type="Node2D" parent="." node_paths=PackedStringArray("test_card")]
 position = Vector2(459, 392)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://bx2jj8fe54h4n"]
+[gd_scene load_steps=48 format=3 uid="uid://bx2jj8fe54h4n"]
 
 [ext_resource type="Script" path="res://scripts/enemies/golem/Golem.gd" id="1_87shi"]
 [ext_resource type="Script" path="res://scripts/enemies/golem/GolemCharacter.gd" id="2_nd7k1"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dt5f43x6el13e" path="res://assets/golem/Blue/White_Swoosh_VFX/Golem_1_hurt.png" id="4_ftu5s"]
 [ext_resource type="Script" path="res://scripts/enemies/golem/GolemVFX.gd" id="6_tcxy8"]
 [ext_resource type="PackedScene" uid="uid://do8tcyo73564o" path="res://scenes/health_bar.tscn" id="8_co67a"]
+[ext_resource type="PackedScene" uid="uid://cnn1a747k3pm3" path="res://scenes/nourishment_container.tscn" id="9_vip57"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7h7y0"]
 atlas = ExtResource("3_jp1wm")
@@ -287,13 +288,14 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qfck0"]
 size = Vector2(40, 40)
 
-[node name="Golem" type="Node2D" node_paths=PackedStringArray("character", "vfx", "health_bar", "area")]
+[node name="Golem" type="Node2D" node_paths=PackedStringArray("character", "vfx", "area", "health_bar", "nourishment_container")]
 scale = Vector2(6, 6)
 script = ExtResource("1_87shi")
 character = NodePath("Character")
 vfx = NodePath("VFX")
-health_bar = NodePath("Health Bar")
 area = NodePath("Area2D")
+health_bar = NodePath("Health Bar")
+nourishment_container = NodePath("Nourishment Container")
 
 [node name="Character" type="Node2D" parent="."]
 script = ExtResource("2_nd7k1")
@@ -314,6 +316,13 @@ shape = SubResource("RectangleShape2D_qfck0")
 
 [node name="Health Bar" parent="." instance=ExtResource("8_co67a")]
 offset_left = -20.0
-offset_top = -45.085
+offset_top = -48.0
 offset_right = 20.0
-offset_bottom = -41.085
+offset_bottom = -44.0
+
+[node name="Nourishment Container" parent="." instance=ExtResource("9_vip57")]
+offset_left = -21.0
+offset_top = -43.0
+offset_right = 19.0
+offset_bottom = -3.0
+scale = Vector2(0.16, 0.16)

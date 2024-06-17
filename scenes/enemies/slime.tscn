@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bbfpmjly1lev5"]
+[gd_scene load_steps=53 format=3 uid="uid://bbfpmjly1lev5"]
 
 [ext_resource type="Script" path="res://scripts/enemies/slime/Slime.gd" id="1_2buqr"]
 [ext_resource type="Script" path="res://scripts/enemies/slime/SlimeCharacter.gd" id="2_vxfnp"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bx1nvxlc88ixi" path="res://assets/slime/idle/Sprite Sheet - Green Idle.png" id="5_fimeq"]
 [ext_resource type="Script" path="res://scripts/enemies/slime/SlimeVFX.gd" id="6_y480h"]
 [ext_resource type="PackedScene" uid="uid://do8tcyo73564o" path="res://scenes/health_bar.tscn" id="8_g7myi"]
+[ext_resource type="PackedScene" uid="uid://cnn1a747k3pm3" path="res://scenes/nourishment_container.tscn" id="9_l0dvr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4dhjo"]
 atlas = ExtResource("3_ktn50")
@@ -322,13 +323,14 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qfck0"]
 size = Vector2(40, 26)
 
-[node name="Slime" type="Node2D" node_paths=PackedStringArray("character", "vfx", "health_bar", "area")]
+[node name="Slime" type="Node2D" node_paths=PackedStringArray("character", "vfx", "area", "health_bar", "nourishment_container")]
 scale = Vector2(6, 6)
 script = ExtResource("1_2buqr")
 character = NodePath("Character")
 vfx = NodePath("VFX")
-health_bar = NodePath("Health Bar")
 area = NodePath("Area2D")
+health_bar = NodePath("Health Bar")
+nourishment_container = NodePath("Nourishment Container")
 
 [node name="Character" type="Node2D" parent="."]
 script = ExtResource("2_vxfnp")
@@ -350,3 +352,10 @@ offset_left = -20.0
 offset_top = -34.0
 offset_right = 20.0
 offset_bottom = -30.0
+
+[node name="Nourishment Container" parent="." instance=ExtResource("9_l0dvr")]
+offset_left = -21.0
+offset_top = -29.0
+offset_right = 19.0
+offset_bottom = 11.0
+scale = Vector2(0.16, 0.16)

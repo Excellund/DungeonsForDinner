@@ -10,6 +10,8 @@ func _init(target: Character, nourishment: Nourishment, amount: int):
 	self.target = target
 	self.nourishment = nourishment
 	self.amount = amount
+	act()
 
 func act():
 	target.apply_nourishment(nourishment, amount)
+	SignalBus.nourishment_applied.emit(target, nourishment)
