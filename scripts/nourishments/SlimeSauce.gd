@@ -6,4 +6,4 @@ func _init(name: String = "Slime Sauce", is_permanent: bool = false, amount: int
 	super._init(name, is_permanent, amount)
 
 func act():
-	
+	pass
