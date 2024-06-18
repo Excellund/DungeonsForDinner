@@ -20,7 +20,7 @@ shadow_offset = Vector2(0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_joi27"]
 bg_color = Color(1, 1, 1, 1)
 
-[node name="Health Bar" type="ProgressBar" node_paths=PackedStringArray("damage_bar", "timer", "label")]
+[node name="Health Bar" type="ProgressBar" node_paths=PackedStringArray("damage_bar", "timer", "name_label", "health_label")]
 z_index = 1
 offset_right = 240.0
 offset_bottom = 4.0
@@ -31,7 +31,8 @@ show_percentage = false
 script = ExtResource("1_n5xg8")
 damage_bar = NodePath("Damage Bar")
 timer = NodePath("Timer")
-label = NodePath("Label")
+name_label = NodePath("Name Label")
+health_label = NodePath("Health Label")
 
 [node name="Damage Bar" type="ProgressBar" parent="."]
 z_index = -1
@@ -50,12 +51,22 @@ show_percentage = false
 wait_time = 0.4
 one_shot = true
 
-[node name="Label" type="Label" parent="."]
+[node name="Name Label" type="Label" parent="."]
 layout_mode = 0
 offset_left = -1.0
 offset_top = -6.0
 offset_right = 39.0
 offset_bottom = 17.0
 scale = Vector2(0.33, 0.33)
+theme_override_fonts/font = ExtResource("2_3aifd")
+theme_override_font_sizes/font_size = 16
+
+[node name="Health Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 728.0
+offset_bottom = 17.0
+scale = Vector2(0.16, 0.16)
 theme_override_fonts/font = ExtResource("2_3aifd")
 theme_override_font_sizes/font_size = 16

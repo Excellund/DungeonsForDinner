@@ -6,7 +6,10 @@ func _init(nourishment_name: String = "Battle Bite", is_permanent: bool = true, 
 	super._init(nourishment_name, is_permanent, amount)
 
 func _ready():
-	pass
+	SignalBus.damage_action.connect(_on_damage_action)
 
-func act():
-	pass
+func _on_damage_action(reference: DamageAction):
+	if not reference.origin.nourishments.has(self):
+		return
+	
+	SignalBus.damage_increase.emit(reference.origin, amount)

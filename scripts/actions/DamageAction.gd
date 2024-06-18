@@ -11,10 +11,13 @@ func _init(origin: Character, target: Character, amount: int, ):
 	self.origin = origin
 	self.target = target
 	self.amount = amount
+	SignalBus.damage_action.emit(self)
 	act()
 	
 func act():
 	target.take_damage(amount)
+
+
 
 func _on_damage_increase(reference: Character, amount: int):
 	if not reference == origin:

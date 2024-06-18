@@ -44,6 +44,7 @@ func apply_nourishment(new_nourishment: Nourishment, amount: int):
 			nourishment.amount += amount
 			return
 
+	new_nourishment.amount = amount
 	nourishments.append(new_nourishment)
 	
 func decrease_nourishments():

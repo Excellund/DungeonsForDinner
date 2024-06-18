@@ -18,5 +18,6 @@ signal character_dead(reference: Character)
 signal death_animation_finished(reference: EntityVFX)
 
 # Actions
+signal damage_action(reference: DamageAction)
 signal nourishment_applied(reference: Character, nourishment: Nourishment)
 signal damage_increase(reference: Character, amount: int)
