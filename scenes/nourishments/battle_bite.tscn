@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://c121dhe18oroh"]
+[gd_scene load_steps=4 format=3 uid="uid://c121dhe18oroh"]
 
+[ext_resource type="Texture2D" uid="uid://bgfqybje00av1" path="res://assets/Pixel Art Icon Pack - RPG/Monster Part/Skull.png" id="1_tceig"]
 [ext_resource type="Script" path="res://scripts/nourishments/BattleBite.gd" id="2_quo7q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_amgc7"]
@@ -8,6 +9,7 @@ size = Vector2(32, 32)
 [node name="Battle Bite" type="TextureRect"]
 offset_right = 32.0
 offset_bottom = 32.0
+texture = ExtResource("1_tceig")
 script = ExtResource("2_quo7q")
 
 [node name="Area2D" type="Area2D" parent="."]
