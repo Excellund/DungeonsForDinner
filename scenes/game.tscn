@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://py1g2yjp0m27" path="res://scenes/pause_menu.tscn" id="2_b1o27"]
 [ext_resource type="Texture2D" uid="uid://chqpq40r8y643" path="res://assets/underworld.png" id="2_sxpan"]
 [ext_resource type="PackedScene" uid="uid://d0n583wftgd7a" path="res://scenes/end_turn.tscn" id="5_d12c0"]
-[ext_resource type="PackedScene" uid="uid://xsm8ktqo3llr" path="res://scenes/hand.tscn" id="6_1ax8h"]
+[ext_resource type="PackedScene" uid="uid://xsm8ktqo3llr" path="res://scenes/card_area.tscn" id="6_1ax8h"]
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("player", "end_turn_button", "timer")]
 script = ExtResource("1_sdyc4")
