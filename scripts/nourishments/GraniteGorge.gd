@@ -11,10 +11,8 @@ var is_triggered: bool = false
 
 func _init(nourishment_name: String = "Granite Gorge", is_permanent: bool = true, amount: int = 1):
 	super._init(nourishment_name, is_permanent, amount)
-	
-func _ready():
 	SignalBus.health_changed.connect(_on_health_changed)
-
+	
 func _on_health_changed(reference: Character, health: int):
 	if not reference == character:
 		return

@@ -17,4 +17,4 @@ func _init():
 	nourishments.append(instance)
 
 func attack(target: Character):
-	DamageAction.new(DAMAGE, target)
+	DamageAction.new(self, target, DAMAGE)

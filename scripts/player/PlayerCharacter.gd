@@ -10,4 +10,4 @@ func _init():
 	super._init(NAME, STARTING_HEALTH, STARTING_HEALTH, CharacterType.HUMANOID)
 
 func attack(target: Character):
-	DamageAction.new(DAMAGE, target)
+	DamageAction.new(self, target, DAMAGE)
