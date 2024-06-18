@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://ec3qd12oua7e"]
+
+[ext_resource type="PackedScene" uid="uid://bdc1u3sbd01uv" path="res://scenes/player.tscn" id="1_5bd40"]
+[ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_88qpl"]
+[ext_resource type="PackedScene" uid="uid://py1g2yjp0m27" path="res://scenes/pause_menu.tscn" id="2_b1o27"]
+[ext_resource type="Texture2D" uid="uid://chqpq40r8y643" path="res://assets/underworld.png" id="2_sxpan"]
+[ext_resource type="PackedScene" uid="uid://d0n583wftgd7a" path="res://scenes/end_turn.tscn" id="5_d12c0"]
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("player", "end_turn_button")]
+script = ExtResource("1_88qpl")
+player = NodePath("Player")
+end_turn_button = NodePath("End Turn")
+
+[node name="Pause Menu" parent="." instance=ExtResource("2_b1o27")]
+top_level = true
+
+[node name="Player" parent="." instance=ExtResource("1_5bd40")]
+top_level = true
+position = Vector2(400, 820)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(2, 2)
+anchor_mode = 0
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(6, 6)
+texture = ExtResource("2_sxpan")
+centered = false
+
+[node name="End Turn" parent="." instance=ExtResource("5_d12c0")]
+offset_left = 1579.0
+offset_top = 38.0
+offset_right = 1619.0
+offset_bottom = 78.0
+scale = Vector2(3, 3)

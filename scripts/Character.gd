@@ -1,29 +1,50 @@
-extends Node
+extends Node2D
 
 class_name Character
 
+enum CharacterType {
+	HUMANOID,
+	AMORPHOUS,
+	PLANT,
+	CONSTRUCT
+}
+
+var character_name: String
 var health: int
 var max_health: int
+var is_dead: bool
+var type: CharacterType
 var nourishments: Array[Nourishment]
 
-func _init(health, max_health):
+func _init(character_name, health, max_health, type):
+	self.character_name = character_name
 	self.health = health
 	self.max_health = max_health
+	self.is_dead = false
+	self.type = type
 	self.nourishments = []
 
 func take_damage(amount: int):
+	SignalBus.about_to_take_damage.emit(self)
 	self.health = max(health - amount, 0)
+	SignalBus.health_changed.emit(self, self.health)
+	if health <= 0:
+		die()
 	
-func heal(amount: int) -> void:
+func heal(amount: int):
 	self.health = min(health + amount, max_health)
+	SignalBus.health_changed.emit(self, self.health)
 	
-func apply_nourishment(type: Nourishment, amount: int):
+func attack(_target: Character):
+	pass
+	
+func apply_nourishment(new_nourishment: Nourishment, amount: int):
 	for nourishment in self.nourishments:
-		if nourishment.name == type.name:
+		if nourishment.nourishment_name == new_nourishment.nourishment_name:
 			nourishment.amount += amount
 			return
 
-	nourishments.append({"type": type, "amount": amount})
+	nourishments.append(new_nourishment)
 	
 func decrease_nourishments():
 	for nourishment in self.nourishments:
@@ -31,4 +52,5 @@ func decrease_nourishments():
 			nourishment.amount -= 1
 
 func die():
-	pass
+	is_dead = true
+	SignalBus.character_dead.emit(self)

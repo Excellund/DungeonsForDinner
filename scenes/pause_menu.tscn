@@ -1,0 +1,85 @@
+[gd_scene load_steps=5 format=3 uid="uid://py1g2yjp0m27"]
+
+[ext_resource type="Script" path="res://scripts/ui/PauseMenu.gd" id="1_hgq43"]
+[ext_resource type="FontFile" uid="uid://3sb0n88od4iq" path="res://assets/fonts/Minecraft.ttf" id="2_hlg5q"]
+
+[sub_resource type="Gradient" id="Gradient_s2ynt"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s73ll"]
+gradient = SubResource("Gradient_s2ynt")
+width = 640
+height = 360
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Pause Menu" type="Node2D" node_paths=PackedStringArray("resume", "options", "main_menu")]
+visible = false
+script = ExtResource("1_hgq43")
+resume = NodePath("Control/Resume")
+options = NodePath("Control/Options")
+main_menu = NodePath("Control/Main Menu")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+size_flags_vertical = 0
+texture = SubResource("GradientTexture2D_s73ll")
+stretch_mode = 3
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="Resume" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -100.0
+offset_right = 130.0
+offset_bottom = -44.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_hlg5q")
+theme_override_font_sizes/font_size = 48
+text = "Resume"
+
+[node name="Options" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -28.0
+offset_right = 130.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_hlg5q")
+theme_override_font_sizes/font_size = 48
+text = "Options"
+
+[node name="Main Menu" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = 44.0
+offset_right = 130.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_hlg5q")
+theme_override_font_sizes/font_size = 48
+text = "Main Menu"
