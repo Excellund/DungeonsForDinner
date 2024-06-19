@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d0n583wftgd7a"]
 
-[ext_resource type="FontFile" uid="uid://3sb0n88od4iq" path="res://assets/fonts/Minecraft.ttf" id="1_tgqak"]
+[ext_resource type="FontFile" uid="uid://cftcgmwkphwew" path="res://assets/fonts/Abaddon Bold.ttf" id="1_klikx"]
 
 [node name="End Turn" type="Button"]
 offset_right = 8.0
@@ -8,6 +8,6 @@ offset_bottom = 8.0
 theme_override_constants/outline_size = 0
 theme_override_constants/h_separation = 0
 theme_override_constants/icon_max_width = 0
-theme_override_fonts/font = ExtResource("1_tgqak")
+theme_override_fonts/font = ExtResource("1_klikx")
 action_mode = 0
 text = "Enemy Turn"

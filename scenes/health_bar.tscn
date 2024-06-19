@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://do8tcyo73564o"]
 
 [ext_resource type="Script" path="res://scripts/ui/HealthBar.gd" id="1_n5xg8"]
-[ext_resource type="FontFile" uid="uid://3sb0n88od4iq" path="res://assets/fonts/Minecraft.ttf" id="2_3aifd"]
+[ext_resource type="FontFile" uid="uid://cftcgmwkphwew" path="res://assets/fonts/Abaddon Bold.ttf" id="2_lqm2n"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r5fc7"]
 
@@ -58,7 +58,7 @@ offset_top = -6.0
 offset_right = 39.0
 offset_bottom = 17.0
 scale = Vector2(0.33, 0.33)
-theme_override_fonts/font = ExtResource("2_3aifd")
+theme_override_fonts/font = ExtResource("2_lqm2n")
 theme_override_font_sizes/font_size = 16
 
 [node name="Health Label" type="Label" parent="."]
@@ -66,7 +66,8 @@ layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
 offset_right = 728.0
-offset_bottom = 17.0
+offset_bottom = 19.0
 scale = Vector2(0.16, 0.16)
-theme_override_fonts/font = ExtResource("2_3aifd")
+theme_override_fonts/font = ExtResource("2_lqm2n")
 theme_override_font_sizes/font_size = 16
+text = "60/100"

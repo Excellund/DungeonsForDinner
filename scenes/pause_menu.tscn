@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://py1g2yjp0m27"]
 
 [ext_resource type="Script" path="res://scripts/ui/PauseMenu.gd" id="1_hgq43"]
-[ext_resource type="FontFile" uid="uid://3sb0n88od4iq" path="res://assets/fonts/Minecraft.ttf" id="2_hlg5q"]
+[ext_resource type="FontFile" uid="uid://cftcgmwkphwew" path="res://assets/fonts/Abaddon Bold.ttf" id="2_xov65"]
 
 [sub_resource type="Gradient" id="Gradient_s2ynt"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -46,7 +46,7 @@ offset_right = 130.0
 offset_bottom = -44.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_hlg5q")
+theme_override_fonts/font = ExtResource("2_xov65")
 theme_override_font_sizes/font_size = 48
 text = "Resume"
 
@@ -63,7 +63,7 @@ offset_right = 130.0
 offset_bottom = 28.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_hlg5q")
+theme_override_fonts/font = ExtResource("2_xov65")
 theme_override_font_sizes/font_size = 48
 text = "Options"
 
@@ -80,6 +80,6 @@ offset_right = 130.0
 offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_hlg5q")
+theme_override_fonts/font = ExtResource("2_xov65")
 theme_override_font_sizes/font_size = 48
 text = "Main Menu"
