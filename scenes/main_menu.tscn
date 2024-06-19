@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bv0226g7g7yvp"]
+[gd_scene load_steps=6 format=3 uid="uid://bv0226g7g7yvp"]
 
 [ext_resource type="Script" path="res://scripts/ui/MainMenu.gd" id="1_sgeb1"]
 [ext_resource type="Texture2D" uid="uid://d18xq4vsldqki" path="res://assets/dungeon background 4.png" id="1_winl2"]
 [ext_resource type="FontFile" uid="uid://cftcgmwkphwew" path="res://assets/fonts/Abaddon Bold.ttf" id="3_t3sia"]
+[ext_resource type="Texture2D" uid="uid://8yv3rmjhcvdo" path="res://assets/2d_lights_and_shadows_neutral_point_light.webp" id="4_vrvyp"]
+[ext_resource type="Script" path="res://scripts/lantern.gd" id="5_5b241"]
 
 [node name="Main Menu" type="Node2D"]
 
@@ -72,3 +74,10 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_t3sia")
 theme_override_font_sizes/font_size = 48
 text = "Exit"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(973, 360)
+energy = 1.58
+texture = ExtResource("4_vrvyp")
+texture_scale = 0.4
+script = ExtResource("5_5b241")

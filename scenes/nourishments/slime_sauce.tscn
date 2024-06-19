@@ -2,18 +2,13 @@
 
 [ext_resource type="Texture2D" uid="uid://cw4q8u8k2egxm" path="res://assets/Pixel Art Icon Pack - RPG/Monster Part/Slime Gel.png" id="1_xh8ya"]
 [ext_resource type="Script" path="res://scripts/nourishments/SlimeSauce.gd" id="2_oj0g2"]
+[ext_resource type="PackedScene" uid="uid://dxr3hc25mjvuu" path="res://scenes/info_box.tscn" id="3_u0g6o"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_amgc7"]
-size = Vector2(32, 32)
-
-[node name="Slime Sauce" type="TextureRect"]
+[node name="Slime Sauce" type="TextureRect" node_paths=PackedStringArray("info_box")]
 offset_right = 32.0
 offset_bottom = 32.0
 texture = ExtResource("1_xh8ya")
 script = ExtResource("2_oj0g2")
+info_box = NodePath("Info Box")
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(16, 16)
-shape = SubResource("RectangleShape2D_amgc7")
+[node name="Info Box" parent="." instance=ExtResource("3_u0g6o")]

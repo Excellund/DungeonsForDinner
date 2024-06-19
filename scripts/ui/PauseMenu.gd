@@ -13,7 +13,10 @@ func _ready():
 
 func _process(_delta):
 	if Input.is_action_just_pressed("escape"):
-		show()
+		if self.visible:
+			hide()
+		else:
+			show()
 
 func _on_resume_pressed():
 	hide()
