@@ -17,8 +17,6 @@ func _init(origin: Character, target: Character, amount: int, ):
 func act():
 	target.take_damage(amount)
 
-
-
 func _on_damage_increase(reference: Character, amount: int):
 	if not reference == origin:
 		return
