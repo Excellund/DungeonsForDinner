@@ -1,104 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://xsm8ktqo3llr"]
+[gd_scene load_steps=3 format=3 uid="uid://cvtvmnkc60bfr"]
 
-[ext_resource type="PackedScene" uid="uid://gnubhfotq4w7" path="res://scenes/card.tscn" id="1_e31qp"]
 [ext_resource type="Script" path="res://scripts/Hand.gd" id="1_wf3tu"]
-[ext_resource type="PackedScene" path="res://scenes/card_pile.tscn" id="4_s673h"]
-[ext_resource type="Script" path="res://scripts/CardManager.gd" id="5_frnww"]
 
 [sub_resource type="Curve" id="Curve_vawj1"]
 _data = [Vector2(0, 1), 0.0, -4.83129, 0, 0, Vector2(0.514851, -0.010989), 0.0, 0.0, 0, 0, Vector2(1, 1), 4.99451, 0.0, 0, 0]
 point_count = 3
 
-[node name="CardArea" type="Node2D"]
-visible = false
-scale = Vector2(2, 2)
-
-[node name="Hand" type="Node2D" parent="." node_paths=PackedStringArray("test_card")]
-position = Vector2(459, 392)
+[node name="Hand" type="Node2D" node_paths=PackedStringArray("dead_card_holder", "test_card")]
+position = Vector2(924, 933)
 script = ExtResource("1_wf3tu")
+dead_card_holder = NodePath("")
 position_curve = SubResource("Curve_vawj1")
 HAND_WIDTH = 100
 HAND_HEIGHT = 15
-test_card = NodePath("../Card5")
-
-[node name="Card2" parent="Hand" instance=ExtResource("1_e31qp")]
-rotation_speed = 0.0
-
-[node name="Card" parent="Hand" instance=ExtResource("1_e31qp")]
-rotation_speed = 0.0
-
-[node name="DrawPile" parent="." instance=ExtResource("4_s673h")]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 830.0
-offset_top = 379.0
-offset_right = 958.0
-offset_bottom = 539.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="DiscardPile" parent="." instance=ExtResource("4_s673h")]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 2.0
-offset_top = 380.0
-offset_right = 130.0
-offset_bottom = 540.0
-grow_vertical = 0
-
-[node name="Button" type="Button" parent="."]
-offset_left = 11.0
-offset_top = 7.0
-offset_right = 87.0
-offset_bottom = 38.0
-text = "add card"
-
-[node name="Button2" type="Button" parent="."]
-offset_left = 16.0
-offset_top = 43.0
-offset_right = 83.0
-offset_bottom = 74.0
-text = "remove"
-
-[node name="Card5" parent="." instance=ExtResource("1_e31qp")]
-offset_left = 190.0
-offset_top = 52.0
-offset_right = 286.0
-offset_bottom = 180.0
-rotation_speed = 0.0
-
-[node name="CardManager" type="Node" parent="." node_paths=PackedStringArray("deck", "hand", "discard")]
-script = ExtResource("5_frnww")
-deck = NodePath("../DrawPile")
-hand = NodePath("../Hand")
-discard = NodePath("../DiscardPile")
-
-[node name="PopDeck" type="Button" parent="."]
-offset_left = 10.0
-offset_top = 80.0
-offset_right = 89.0
-offset_bottom = 111.0
-text = "pop deck"
-
-[node name="NewHand" type="Button" parent="."]
-offset_left = 6.0
-offset_top = 117.0
-offset_right = 91.0
-offset_bottom = 148.0
-text = "new hand"
-
-[node name="DumpHand" type="Button" parent="."]
-offset_top = 148.0
-offset_right = 98.0
-offset_bottom = 179.0
-text = "dump hand"
-
-[connection signal="pressed" from="Button" to="Hand" method="_on_button_pressed"]
-[connection signal="pressed" from="Button2" to="Hand" method="_on_button_2_pressed"]
-[connection signal="pressed" from="PopDeck" to="CardManager" method="_on_pop_deck_pressed"]
-[connection signal="pressed" from="NewHand" to="CardManager" method="_on_new_hand_pressed"]
-[connection signal="pressed" from="DumpHand" to="CardManager" method="_on_dump_hand_pressed"]
+test_card = NodePath("")
