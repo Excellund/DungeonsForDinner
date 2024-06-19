@@ -21,7 +21,3 @@ signal death_animation_finished(reference: EntityVFX)
 signal damage_action(reference: DamageAction)
 signal nourishment_applied(reference: Character, nourishment: Nourishment)
 signal damage_increase(reference: Character, amount: int)
-
-# Info Box
-signal update_info_box_header(reference: InfoBox, new_header: String)
-signal update_info_box_description(reference: InfoBox, new_description: String)

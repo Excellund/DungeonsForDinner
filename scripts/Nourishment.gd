@@ -17,7 +17,10 @@ func _init(nourishment_name: String, is_permanent: bool, amount: int = 1):
 func _ready():
 	self.mouse_entered.connect(_on_mouse_entered)
 	self.mouse_exited.connect(_on_mouse_exited)
-	SignalBus.update_info_box_header.emit(info_box, nourishment_name)
+	update_info_box()
+	
+func update_info_box():
+	info_box.header.text = nourishment_name
 
 func act():
 	pass
