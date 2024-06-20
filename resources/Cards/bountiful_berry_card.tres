@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://ce4qmuel6eel6"]
+
+[ext_resource type="Script" path="res://resources/Cards/CardData.gd" id="1_ltltd"]
+[ext_resource type="Texture2D" uid="uid://bxxin2t4a7xrl" path="res://assets/card/BountifulBerry.png" id="2_wwuyt"]
+
+[resource]
+script = ExtResource("1_ltltd")
+texture = ExtResource("2_wwuyt")
+card_name = "Bountiful Berry"
+cost = 1
+damage = 1
+healing_on_eat = 5
+card_target = "One Enemy"
+actions = {
+"Damage": 1
+}
+eat_actions = {
+"Heal": 5,
+"Servings": 3
+}
+attack_text = "Deal {Damage} damage to target"
+eat_text = "SERVINGS: {Servings}
+Restore {Heal} health"

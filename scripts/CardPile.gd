@@ -1,9 +1,8 @@
 extends Control
 class_name CardPile
 
-var deck: Array[Card] = []
-@export var card_scene: PackedScene
 
+var deck: Array[Card] = []
 
 
 func add_card(card:Card):
@@ -11,7 +10,11 @@ func add_card(card:Card):
 
 
 func add_card_array(cards: Array[Card]):
-	deck.append_array(cards)
+	var cleaned_cards = cards.filter(_is_valid)
+	deck.append_array(cleaned_cards)
+
+func _is_valid(card) -> bool:
+	return is_instance_valid(card)
 
 
 func draw_card(number_of_cards:int = 1) -> Array[Card]:
@@ -30,12 +33,6 @@ func is_too_few_cards(number_of_cards:int = 1):
 
 func suffle_pile():
 	deck.shuffle()
-
-# testing function
-func _populate_deck(number_of_cards:int = 5):
-	for i in number_of_cards:
-		var new_card = card_scene.instantiate()
-		deck.push_back(new_card)
 
 
 func _on_gui_input(event):

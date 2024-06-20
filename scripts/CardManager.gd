@@ -3,7 +3,7 @@ extends Node
 @export var deck: CardPile
 @export var hand: Hand
 @export var discard: CardPile
-
+@export var persistent_deck: StartingDeck
 @export var starting_hand_size: int
 
 func _ready():
@@ -11,7 +11,7 @@ func _ready():
 	SignalBus.start_of_turn.connect(_on_turn_start)
 	SignalBus.end_of_turn.connect(_on_turn_end)
 	SignalBus.end_of_encounter.connect(_on_end_of_encounter)
-	SignalBus.card_used.connect(_on_card_used)
+	SignalBus.card_effect_resolved.connect(_on_card_effect_resolved)
 
 #TODO bug when deck and discard are both empty
 func _on_start_of_encounter():
@@ -23,6 +23,17 @@ func _on_end_of_encounter():
 	_refresh_draw_pile()
 
 
+#signal for start of turn
+func _on_turn_start():
+	var new_cards := _draw_cards(starting_hand_size)
+	hand.add_card_array_to_hand(new_cards, deck.global_position)
+
+
+func _on_turn_end():
+	var discarded_cards = hand.remove_all_card_from_hand(discard.global_position)
+	discard.add_card_array(discarded_cards)
+
+
 func _on_draw_pile_empty():
 	deck.add_card_array(discard.deck)
 	deck.suffle_pile()
@@ -31,12 +42,6 @@ func _on_draw_pile_empty():
 
 func _on_draw_in_turn():
 	var new_cards: Array[Card] = deck.draw_card()
-	hand.add_card_array_to_hand(new_cards, deck.global_position)
-
-
-#signal for start of turn
-func _on_turn_start():
-	var new_cards := _draw_cards(starting_hand_size)
 	hand.add_card_array_to_hand(new_cards, deck.global_position)
 
 
@@ -65,19 +70,25 @@ func _refresh_draw_pile():
 	return true
 
 #signal for turn ending
-func _on_turn_end():
-	var discarded_cards = hand.remove_all_card_from_hand(discard.global_position)
-	discard.add_card_array(discarded_cards)
 
 
-func _on_card_used(card, _target, _is_attack_side):
-	hand.remove_card_from_hand(card ,discard.global_position)
-	discard.add_card(card)
 
+func _on_card_effect_resolved(card):
+	if not card.is_dead:
+		hand.remove_card_from_hand(card ,discard.global_position)
+		discard.add_card(card)
+	else:
+		self.persistent_deck.true_deck.erase(card)
+		hand.remove_child(card)
+		hand.hand_size -= 1
+		hand.reorder_hand()
+		card.queue_free()
 
 
 func _on_pop_deck_pressed():
-	deck._populate_deck(6)
+	var new_deck = await persistent_deck.initialize_deck()
+	deck.deck = new_deck
+	deck.suffle_pile()
 
 
 

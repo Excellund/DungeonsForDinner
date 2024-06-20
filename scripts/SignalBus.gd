@@ -19,7 +19,7 @@ signal death_animation_finished(reference: EntityVFX)
 
 # Card Actions
 signal card_used(card: Card, target: Entity, is_attack_side: bool)
-signal card_modified(card: Card, is_attack_side: bool)
+signal card_effect_resolved(card: Card)
 
 # Actions
 signal nourishment_applied(reference: Character, nourishment: Nourishment)

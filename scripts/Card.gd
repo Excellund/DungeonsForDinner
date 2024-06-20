@@ -13,12 +13,9 @@ var eat_side_texture: ImageTexture
 
 # vars for setting card text
 var card_name: String
-var cost: int
-var attack_text: String
-var eat_text: String
-var card_target: String
 
 # vars for states
+var is_dead: bool = false
 var is_card_held: bool = false
 var is_rotating: bool = false
 var is_attack_side: bool = true
@@ -42,15 +39,13 @@ const TWEEN_TRANS_SPEED: float = 1
 const TWEEN_ROTATION_SPEED: float = 1
 const TWEEN_HOVER_ROTATION_SPEED: float = 0.25
 
+signal card_modified(is_attack_side_local: bool)
+
 
 func _ready():
-	var a_img: Image = await AllCardUpdater.get_flattened_sprite(card_data, true)
-	attack_side_texture = ImageTexture.create_from_image(a_img)
-	
-	var b_img: Image = await AllCardUpdater.get_flattened_sprite(card_data, false)
-	eat_side_texture = ImageTexture.create_from_image(b_img)
 	card_sprite.texture = attack_side_texture
-	
+	self.card_modified.connect(_on_card_modified)
+
 
 func _process(delta):
 	if is_card_held:
@@ -149,7 +144,7 @@ func _on_gui_input(event):
 			is_card_held = false
 			
 			if entity_held_over:
-				SignalBus.card_used.emit(self, entity_held_over, is_attack_side)
+				SignalBus.card_used.emit(self, entity_held_over.duplicate(), is_attack_side)
 			else:
 				is_tweening = true
 				var tween = get_tree().create_tween()
@@ -165,17 +160,30 @@ func _on_gui_input(event):
 
 
 func set_card_data(data: CardData):
-	card_data = data
-	#card_sprite.texture = data.texture
+	self.card_data = data
 	card_name = data.card_name
-	#cost = data.cost
-	#card_target = data.target
-	#attack_text = data.attack_text
-	#eat_text = data.eat_text
+	
+	var a_img: Image = await AllCardUpdater.get_flattened_sprite(self.card_data, true)
+	attack_side_texture = ImageTexture.create_from_image(a_img)
+	
+	var b_img: Image = await AllCardUpdater.get_flattened_sprite(self.card_data, false)
+	eat_side_texture = ImageTexture.create_from_image(b_img)
+
+
+func _on_card_modified(is_attack_side_local: bool):
+	if is_attack_side_local:
+		var a_img: Image = await AllCardUpdater.get_flattened_sprite(self.card_data, true)
+		attack_side_texture = ImageTexture.create_from_image(a_img)
+		self.card_sprite.texture = self.attack_side_texture
+	else:
+		var b_img: Image = await AllCardUpdater.get_flattened_sprite(self.card_data, false)
+		eat_side_texture = ImageTexture.create_from_image(b_img)
+		self.card_sprite.texture = self.eat_side_texture
 
 
 func _on_area_2d_area_entered(area: Area2D):
-	entity_held_over = area.get_parent()
+	if area.get_parent() is Entity:
+		entity_held_over = area.get_parent()
 
 
 func _on_area_2d_area_exited(_area):
@@ -184,11 +192,3 @@ func _on_area_2d_area_exited(_area):
 
 func _on_tween_finished():
 	is_tweening = false
-
-
-func _on_button_pressed():
-	card_data.cost += 1
-	var a_img: Image = await AllCardUpdater.get_flattened_sprite(card_data, true)
-	attack_side_texture = ImageTexture.create_from_image(a_img)
-	if is_attack_side:
-		card_sprite.texture = attack_side_texture

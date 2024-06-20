@@ -14,6 +14,7 @@ func _ready():
 	end_turn_button.pressed.connect(self._on_end_turn_button_pressed)
 	timer.timeout.connect(self._on_timer_timeout)
 	SignalBus.death_animation_finished.connect(_on_entity_death)
+	SignalBus.card_used.connect(_on_card_used)
 	next_encounter()
 
 func setup_encounter(new_encounter: Encounter):
@@ -52,3 +53,27 @@ func _on_timer_timeout():
 	TurnManager.change_turn()
 	end_turn_button.text = "End Turn"
 	end_turn_button.disabled = false
+
+
+func _on_card_used(card: Card, target: Entity, is_attack_side: bool):
+	var card_data = card.card_data
+	if is_attack_side:
+		DamageAction.new(player.character, player.character, card_data.cost)
+		var actions_dict = card_data.actions
+		for action in actions_dict:
+			match action:
+				"Damage":
+					DamageAction.new(player.character, target.character, actions_dict["Damage"])
+				_:
+					pass
+	else:
+		var eat_actions_dict = card_data.eat_actions
+		for action in card_data.eat_actions:
+			match action:
+				"Heal":
+					HealAction.new(eat_actions_dict["Heal"], player.character)
+				"Servings":
+					ServingsAction.new(card)
+				_:
+					pass
+	SignalBus.card_effect_resolved.emit(card)
