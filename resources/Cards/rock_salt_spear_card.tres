@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://lyh7f28xuit5"]
+
+[ext_resource type="Script" path="res://resources/Cards/CardData.gd" id="1_do3qf"]
+[ext_resource type="Texture2D" uid="uid://dd16r6s68leb" path="res://assets/card/Skewer.png" id="2_jaw3t"]
+
+[resource]
+script = ExtResource("1_do3qf")
+texture = ExtResource("2_jaw3t")
+card_name = "Rock Salt Spear"
+cost = 5
+healing_on_eat = 0
+card_target = "One Enemy"
+actions = {
+"Damage": 15,
+"RockSalt": 0
+}
+eat_actions = {
+"RockSalt": 0,
+"Servings": 1
+}
+attack_text = "Deal {Damage}({+RockSalt}) to all enemies"
+eat_text = "Permanently increases the damage your rock salt card do by 5"
