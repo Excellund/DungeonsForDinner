@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://ec3qd12oua7e"]
+[gd_scene load_steps=8 format=3 uid="uid://ec3qd12oua7e"]
 
 [ext_resource type="PackedScene" uid="uid://bdc1u3sbd01uv" path="res://scenes/player.tscn" id="1_5bd40"]
 [ext_resource type="Script" path="res://scripts/managers/GameManager.gd" id="1_sdyc4"]
+[ext_resource type="PackedScene" uid="uid://cb65obavqu03x" path="res://scenes/reward_screen.tscn" id="2_0vsnf"]
 [ext_resource type="PackedScene" uid="uid://py1g2yjp0m27" path="res://scenes/pause_menu.tscn" id="2_b1o27"]
 [ext_resource type="Texture2D" uid="uid://chqpq40r8y643" path="res://assets/underworld.png" id="2_sxpan"]
 [ext_resource type="PackedScene" uid="uid://d0n583wftgd7a" path="res://scenes/end_turn.tscn" id="5_d12c0"]
@@ -12,6 +13,9 @@ script = ExtResource("1_sdyc4")
 player = NodePath("Player")
 end_turn_button = NodePath("End Turn")
 timer = NodePath("Timer")
+
+[node name="RewardScreen" parent="." instance=ExtResource("2_0vsnf")]
+visible = false
 
 [node name="Pause Menu" parent="." instance=ExtResource("2_b1o27")]
 top_level = true

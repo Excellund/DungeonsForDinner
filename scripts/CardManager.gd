@@ -3,6 +3,7 @@ extends Node
 @export var deck: CardPile
 @export var hand: Hand
 @export var discard: CardPile
+@export var card_scene: PackedScene
 @export var persistent_deck: StartingDeck
 @export var starting_hand_size: int
 
@@ -12,13 +13,14 @@ func _ready():
 	SignalBus.end_of_turn.connect(_on_turn_end)
 	SignalBus.end_of_encounter.connect(_on_end_of_encounter)
 	SignalBus.card_effect_resolved.connect(_on_card_effect_resolved)
+	SignalBus.request_add_card_to_perm_deck.connect(_on_request_add_card_to_perm_deck)
 
 #TODO bug when deck and discard are both empty
 func _on_start_of_encounter():
 	deck.suffle_pile()
 
 
-func _on_end_of_encounter():
+func _on_end_of_encounter(_encounter):
 	#depending on order also need to move cards from hand to discard
 	_refresh_draw_pile()
 
@@ -85,11 +87,15 @@ func _on_card_effect_resolved(card):
 		card.queue_free()
 
 
+func _on_request_add_card_to_perm_deck(data: CardData):
+	var new_card = card_scene.instantiate()
+	new_card.set_card_data(data)
+	persistent_deck.true_deck.append(new_card)
+
 func _on_pop_deck_pressed():
-	var new_deck = await persistent_deck.initialize_deck()
+	var new_deck = persistent_deck.initialize_deck().duplicate()
 	deck.deck = new_deck
 	deck.suffle_pile()
-
 
 
 func _on_new_hand_pressed():

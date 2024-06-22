@@ -38,8 +38,8 @@ func _on_entity_death(_reference: EntityVFX):
 		if not enemy.character.is_dead:
 			return
 	
-	SignalBus.end_of_encounter.emit()
-	next_encounter()
+	SignalBus.end_of_encounter.emit(encounter)
+	#next_encounter()
 	
 func _on_end_turn_button_pressed():
 	TurnManager.change_turn()
