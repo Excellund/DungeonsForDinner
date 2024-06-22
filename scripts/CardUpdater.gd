@@ -13,9 +13,10 @@ var view_texture: ViewportTexture
 
 
 func _ready():
-	view_texture = self.get_texture()
+	pass
 	
 func get_flattened_sprite(data:CardData, is_attack_side):
+	view_texture = self.get_texture()
 	card_name.text = data.card_name
 	main_sprite.texture = data.texture
 	if is_attack_side:
@@ -29,5 +30,7 @@ func get_flattened_sprite(data:CardData, is_attack_side):
 	self.render_target_update_mode = SubViewport.UPDATE_ONCE
 	await RenderingServer.frame_post_draw
 	var return_img = view_texture.get_image()
+	if not is_attack_side:
+		return_img.flip_x()
 	return return_img
 	

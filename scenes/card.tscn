@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dut3eu6qebkab"]
+[gd_scene load_steps=8 format=3 uid="uid://dut3eu6qebkab"]
 
 [ext_resource type="Script" path="res://scripts/Card.gd" id="1_w50wd"]
 [ext_resource type="Shader" path="res://scripts/card3Deffect.gdshader" id="2_mlehg"]
-[ext_resource type="Resource" uid="uid://0p5twlmn4fy2" path="res://resources/Cards/test_card1.tres" id="2_w8e12"]
+[ext_resource type="Resource" uid="uid://blaadinjv8fqm" path="res://resources/Cards/skewer_card.tres" id="2_q5edh"]
+[ext_resource type="PackedScene" uid="uid://ckog78srymsdy" path="res://scenes/card_updater.tscn" id="2_rgfit"]
 [ext_resource type="Texture2D" uid="uid://cfm8unmob6sr8" path="res://assets/card/CardArt_A_side.png" id="3_ikmkf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wq062"]
@@ -10,14 +11,14 @@ resource_local_to_scene = true
 shader = ExtResource("2_mlehg")
 shader_parameter/fov = 90.0
 shader_parameter/cull_back = false
-shader_parameter/y_rot = 8.55e-06
+shader_parameter/y_rot = 0.0
 shader_parameter/x_rot = 0.0
 shader_parameter/inset = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f6ji4"]
 size = Vector2(4, 4)
 
-[node name="Card" type="Control" node_paths=PackedStringArray("card_sprite")]
+[node name="Card" type="Control" node_paths=PackedStringArray("card_updater", "card_sprite")]
 custom_minimum_size = Vector2(192, 256)
 layout_mode = 3
 anchors_preset = 0
@@ -27,9 +28,12 @@ pivot_offset = Vector2(48, 64)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_w50wd")
+card_updater = NodePath("CardUpdater")
 card_sprite = NodePath("CardSprite")
 rotation_speed = 3.5
-card_data = ExtResource("2_w8e12")
+card_data = ExtResource("2_q5edh")
+
+[node name="CardUpdater" parent="." instance=ExtResource("2_rgfit")]
 
 [node name="CardSprite" type="Sprite2D" parent="."]
 z_index = 1

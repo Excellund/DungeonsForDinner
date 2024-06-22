@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://xsm8ktqo3llr"]
+[gd_scene load_steps=6 format=3 uid="uid://xsm8ktqo3llr"]
 
 [ext_resource type="PackedScene" uid="uid://cvtvmnkc60bfr" path="res://scenes/hand.tscn" id="1_pareh"]
 [ext_resource type="PackedScene" uid="uid://d1ela5g6cb4ho" path="res://scenes/card_pile.tscn" id="2_mumg8"]
 [ext_resource type="Resource" uid="uid://d22vqy36a1vdo" path="res://resources/StartingDecks/Deck1.tres" id="4_q0cv3"]
+[ext_resource type="PackedScene" uid="uid://dut3eu6qebkab" path="res://scenes/card.tscn" id="4_sewee"]
 [ext_resource type="Script" path="res://scripts/CardManager.gd" id="4_vlltq"]
 
 [node name="CardArea" type="Node2D"]
@@ -44,6 +45,7 @@ script = ExtResource("4_vlltq")
 deck = NodePath("../DrawPile")
 hand = NodePath("../Hand")
 discard = NodePath("../DiscardPile")
+card_scene = ExtResource("4_sewee")
 persistent_deck = ExtResource("4_q0cv3")
 starting_hand_size = 5
 
