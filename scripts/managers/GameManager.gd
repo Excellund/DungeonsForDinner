@@ -8,6 +8,7 @@ class_name GameManager
 
 var encounter: Encounter 
 var enemies: Array[Entity] = []
+var rock_salt_count: int = 0
 
 func _ready():
 	end_turn_button.text = "End Turn"
@@ -64,6 +65,8 @@ func _on_card_used(card: Card, target: Entity, is_attack_side: bool):
 			match action:
 				"Damage":
 					DamageAction.new(player.character, target.character, actions_dict["Damage"])
+				"RockSalt":
+					DamageAction.new(player.character, target.character, 5 * rock_salt_count)
 				_:
 					pass
 	else:
@@ -74,6 +77,12 @@ func _on_card_used(card: Card, target: Entity, is_attack_side: bool):
 					HealAction.new(eat_actions_dict["Heal"], player.character)
 				"Servings":
 					ServingsAction.new(card)
+				"RockSalt":
+					rock_salt_count += 1
+				"AddCard":
+					SignalBus.add_card_action.emit(eat_actions_dict["AddCard"], "Hand", false)
+				"AddCardPerm":
+					SignalBus.add_card_action.emit(eat_actions_dict["AddCard"], "Hand", true)
 				_:
 					pass
 	SignalBus.card_effect_resolved.emit(card)

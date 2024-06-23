@@ -45,6 +45,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("4_abfa8")
 theme_override_font_sizes/font_size = 16
 text = "Temp Name"
+horizontal_alignment = 1
 
 [node name="CardText" type="RichTextLabel" parent="."]
 z_index = 2

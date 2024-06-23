@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/Card.gd" id="1_w50wd"]
 [ext_resource type="Shader" path="res://scripts/card3Deffect.gdshader" id="2_mlehg"]
-[ext_resource type="Resource" uid="uid://blaadinjv8fqm" path="res://resources/Cards/skewer_card.tres" id="2_q5edh"]
 [ext_resource type="PackedScene" uid="uid://ckog78srymsdy" path="res://scenes/card_updater.tscn" id="2_rgfit"]
+[ext_resource type="Resource" uid="uid://blaadinjv8fqm" path="res://resources/cards/skewer_card.tres" id="2_v4g6c"]
 [ext_resource type="Texture2D" uid="uid://cfm8unmob6sr8" path="res://assets/card/CardArt_A_side.png" id="3_ikmkf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wq062"]
@@ -31,7 +31,7 @@ script = ExtResource("1_w50wd")
 card_updater = NodePath("CardUpdater")
 card_sprite = NodePath("CardSprite")
 rotation_speed = 3.5
-card_data = ExtResource("2_q5edh")
+card_data = ExtResource("2_v4g6c")
 
 [node name="CardUpdater" parent="." instance=ExtResource("2_rgfit")]
 

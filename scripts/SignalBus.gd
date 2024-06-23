@@ -25,3 +25,4 @@ signal request_add_card_to_perm_deck(card_data: CardData)
 # Actions
 signal nourishment_applied(reference: Character, nourishment: Nourishment)
 signal damage_increase(reference: Character, amount: int)
+signal add_card_action(card_data: CardData, target: String, is_temporary: bool)

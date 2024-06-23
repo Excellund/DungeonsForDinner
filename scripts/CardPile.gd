@@ -1,7 +1,7 @@
 extends Control
 class_name CardPile
 
-
+@export var view: Control
 var deck: Array[Card] = []
 
 
@@ -31,10 +31,11 @@ func is_too_few_cards(number_of_cards:int = 1):
 		return deck.size()
 
 
-func suffle_pile():
+func shuffle_pile():
 	deck.shuffle()
 
 
 func _on_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		pass # load view deck scene
+		if event.button_mask == MOUSE_BUTTON_MASK_LEFT:
+			view.set_up_view(self.deck)

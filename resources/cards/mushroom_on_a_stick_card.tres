@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://dlgvv802v0sjl"]
+
+[ext_resource type="Script" path="res://resources/cards/CardData.gd" id="1_hirqv"]
+[ext_resource type="Resource" uid="uid://blaadinjv8fqm" path="res://resources/cards/skewer_card.tres" id="1_n5rnk"]
+
+[resource]
+script = ExtResource("1_hirqv")
+card_name = "Mushroom on a Stick"
+cost = 2
+healing_on_eat = 10
+card_target = "One Enemy"
+actions = {
+"Damage": 8
+}
+eat_actions = {
+"AddCard": ExtResource("1_n5rnk"),
+"Heal": 10,
+"Servings": 1
+}
+attack_text = "Deal {Damage} to an enemy"
+eat_text = "Restore {Heal} Health.
+Add a Skewer to your hand"

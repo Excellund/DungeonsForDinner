@@ -14,10 +14,11 @@ func _ready():
 	SignalBus.end_of_encounter.connect(_on_end_of_encounter)
 	SignalBus.card_effect_resolved.connect(_on_card_effect_resolved)
 	SignalBus.request_add_card_to_perm_deck.connect(_on_request_add_card_to_perm_deck)
+	SignalBus.add_card_action.connect(_on_add_card_action)
 
 #TODO bug when deck and discard are both empty
 func _on_start_of_encounter():
-	deck.suffle_pile()
+	deck.shuffle_pile()
 
 
 func _on_end_of_encounter(_encounter):
@@ -38,7 +39,7 @@ func _on_turn_end():
 
 func _on_draw_pile_empty():
 	deck.add_card_array(discard.deck)
-	deck.suffle_pile()
+	deck.shuffle_pile()
 	discard.deck = []
 
 
@@ -67,7 +68,7 @@ func _refresh_draw_pile():
 	if discard.deck.size() == 0:
 		return false
 	deck.add_card_array(discard.deck)
-	deck.suffle_pile()
+	deck.shuffle_pile()
 	discard.deck = []
 	return true
 
@@ -87,15 +88,35 @@ func _on_card_effect_resolved(card):
 		card.queue_free()
 
 
-func _on_request_add_card_to_perm_deck(data: CardData):
+func _on_request_add_card_to_perm_deck(card_data: CardData):
 	var new_card = card_scene.instantiate()
-	new_card.set_card_data(data)
+	new_card.set_card_data(card_data)
 	persistent_deck.true_deck.append(new_card)
+
+
+func _on_add_card_action(card_data: CardData, target: String, is_temporary: bool):
+	var new_card = card_scene.instantiate()
+	new_card.set_card_data(card_data)
+	
+	match target:
+		"Hand":
+			hand.add_card_array_to_hand([new_card],Vector2(-960,540))
+		"Deck":
+			deck.add_card(new_card)
+			deck.shuffle_pile()
+		"Discard":
+			discard.add_card(new_card)
+		_:
+			pass
+	
+	if not is_temporary:
+		SignalBus.request_add_card_to_perm_deck.emit(card_data)
+
 
 func _on_pop_deck_pressed():
 	var new_deck = persistent_deck.initialize_deck().duplicate()
 	deck.deck = new_deck
-	deck.suffle_pile()
+	deck.shuffle_pile()
 
 
 func _on_new_hand_pressed():

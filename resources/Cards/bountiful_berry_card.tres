@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://ce4qmuel6eel6"]
 
-[ext_resource type="Script" path="res://resources/Cards/CardData.gd" id="1_ltltd"]
+[ext_resource type="Script" path="res://resources/cards/CardData.gd" id="1_ltltd"]
 [ext_resource type="Texture2D" uid="uid://bxxin2t4a7xrl" path="res://assets/card/BountifulBerry.png" id="2_wwuyt"]
 
 [resource]
