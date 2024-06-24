@@ -16,6 +16,7 @@ func _ready():
 	SignalBus.request_add_card_to_perm_deck.connect(_on_request_add_card_to_perm_deck)
 	SignalBus.add_card_action.connect(_on_add_card_action)
 
+
 func _on_start_of_encounter():
 	deck.shuffle_pile()
 
@@ -27,7 +28,7 @@ func _on_end_of_encounter(_encounter):
 
 #signal for start of turn
 func _on_turn_start():
-	var new_cards: Array[Card] = deck.draw_card(starting_hand_size)
+	var new_cards := _draw_cards(starting_hand_size)
 	hand.add_card_array_to_hand(new_cards, deck.global_position)
 
 
@@ -119,9 +120,8 @@ func _on_pop_deck_pressed():
 
 
 func _on_new_hand_pressed():
-	var new_hand = deck.draw_card(5)
-	hand.add_card_array_to_hand(new_hand, deck.global_position)
+	_on_turn_start()
 
 
 func _on_dump_hand_pressed():
-	hand.remove_all_card_from_hand(discard.global_position)
+	_on_turn_end()

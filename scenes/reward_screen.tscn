@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cb65obavqu03x"]
+[gd_scene load_steps=7 format=3 uid="uid://cb65obavqu03x"]
 
 [ext_resource type="Script" path="res://scripts/RewardScreen.gd" id="1_bmnbu"]
 [ext_resource type="PackedScene" uid="uid://dut3eu6qebkab" path="res://scenes/card.tscn" id="1_qmhyb"]
 [ext_resource type="Resource" uid="uid://blaadinjv8fqm" path="res://resources/cards/skewer_card.tres" id="2_puj1x"]
 [ext_resource type="Resource" uid="uid://ce4qmuel6eel6" path="res://resources/cards/bountiful_berry_card.tres" id="3_hbs4m"]
+[ext_resource type="FontFile" uid="uid://cd5xrjxn0qlnx" path="res://assets/fonts/Abaddon Light.ttf" id="4_aoelp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sm4ev"]
 bg_color = Color(0.114897, 0.114897, 0.114897, 1)
@@ -47,6 +48,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_sm4ev")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("4_aoelp")
 theme_override_font_sizes/font_size = 30
 text = "Pick a Card"
 horizontal_alignment = 1

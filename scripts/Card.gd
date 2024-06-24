@@ -1,30 +1,38 @@
-extends Container
+extends Control
 
 class_name Card
-
 
 @export_group("inner settings")
 @export var card_updater: SubViewport
 @export var card_sprite: Sprite2D
-@export var animator: AnimationPlayer
 @export var rotation_speed: float = 0.0
 @export_category("CardData")
-@export var card_data: CardData: set = set_card_data
+@export var card_data: CardData
 
+var attack_side_texture: ImageTexture
+var eat_side_texture: ImageTexture
+
+# vars for setting card text
 var card_name: String
 
 # vars for states
 var is_dead: bool = false
 var is_card_held: bool = false
 var is_rotating: bool = false
+var is_attack_side: bool = true
+var is_tweening: bool = false
+var entity_held_over: Entity = null
+
 # vars for rotation lerp
 var staring_angle: float = PI
 var desired_angle: float = 0.01
 const HALF_ANGLE: float = PI/2
 var elapsed = 0
 var drag_offset: Vector2
+
 # vars for tweening
 var pre_hover_rotation: float = 0
+var pre_held_position: Vector2
 const TWEEN_TRANS_SPEED: float = 1
 const TWEEN_ROTATION_SPEED: float = 1
 const TWEEN_HOVER_ROTATION_SPEED: float = 0.25
@@ -54,6 +62,7 @@ func _process(delta):
 				card_sprite.texture = eat_side_texture
 
 func move_to_from(from_pos, target_pos, from_rot, target_rot):
+	is_tweening = true
 	pre_hover_rotation = target_rot
 	
 	var tween = create_tween()
@@ -64,16 +73,21 @@ func move_to_from(from_pos, target_pos, from_rot, target_rot):
 	tween.parallel().tween_property(card_sprite,"rotation",target_rot,TWEEN_ROTATION_SPEED)\
 	.from(from_rot).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	
+	tween.connect("finished", _on_tween_finished)
+	
 	return tween
 
 
 func move_to_from_current(target_pos, target_rot):
+	is_tweening = true
 	pre_hover_rotation = target_rot
 	
 	var tween = create_tween()
 	
-	tween.parallel().tween_property(self,"global_position",target_pos,TWEEN_TRANS_SPEED).from_current()
+	tween.parallel().tween_property(self,"global_position",target_pos,TWEEN_TRANS_SPEED/3).from_current()\
+	.set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
 	tween.parallel().tween_property(card_sprite,"rotation",target_rot,TWEEN_HOVER_ROTATION_SPEED).from_current()
+	tween.connect("finished", _on_tween_finished)
 	
 	return tween
 
@@ -95,12 +109,13 @@ func _on_mouse_exited():
 func _on_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		# check if LMB is pressed and allow the card to be moved
-		if event.button_mask == MOUSE_BUTTON_MASK_LEFT:
+		if event.button_mask == MOUSE_BUTTON_MASK_LEFT and not is_tweening:
+			pre_held_position = self.global_position 
 			is_card_held = true
 			# set offset so card is dragged from where the user clicked
 			drag_offset = get_global_mouse_position() - global_position
 		# check if LMB is relesed and stop the card from moving
-		else:
+		elif is_card_held:
 			is_card_held = false
 			
 			if entity_held_over:

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://xsm8ktqo3llr"]
 
-[ext_resource type="PackedScene" uid="uid://cvtvmnkc60bfr" path="res://scenes/hand.tscn" id="1_pareh"]
+[ext_resource type="PackedScene" uid="uid://bt1uvei24vk8n" path="res://scenes/hand.tscn" id="1_pareh"]
 [ext_resource type="PackedScene" uid="uid://d1ela5g6cb4ho" path="res://scenes/card_pile.tscn" id="2_mumg8"]
 [ext_resource type="PackedScene" uid="uid://dut3eu6qebkab" path="res://scenes/card.tscn" id="4_sewee"]
 [ext_resource type="Script" path="res://scripts/CardManager.gd" id="4_vlltq"]
@@ -14,7 +14,7 @@
 [node name="Hand" parent="." node_paths=PackedStringArray("dead_card_holder") instance=ExtResource("1_pareh")]
 position = Vector2(887, 777)
 dead_card_holder = NodePath("../DeadCardHolder")
-HAND_WIDTH = 200
+HAND_WIDTH = 250
 
 [node name="DrawPile" parent="." node_paths=PackedStringArray("view") instance=ExtResource("2_mumg8")]
 anchors_preset = 8
