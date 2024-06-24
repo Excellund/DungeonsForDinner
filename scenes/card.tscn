@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://dut3eu6qebkab"]
 
 [ext_resource type="Script" path="res://scripts/Card.gd" id="1_w50wd"]
+[ext_resource type="Resource" uid="uid://blaadinjv8fqm" path="res://resources/cards/skewer_card.tres" id="2_awiko"]
 [ext_resource type="Shader" path="res://scripts/card3Deffect.gdshader" id="2_mlehg"]
 [ext_resource type="PackedScene" uid="uid://ckog78srymsdy" path="res://scenes/card_updater.tscn" id="2_rgfit"]
-[ext_resource type="Resource" uid="uid://blaadinjv8fqm" path="res://resources/cards/skewer_card.tres" id="2_v4g6c"]
-[ext_resource type="Texture2D" uid="uid://cfm8unmob6sr8" path="res://assets/card/CardArt_A_side.png" id="3_ikmkf"]
+[ext_resource type="Texture2D" uid="uid://cfm8unmob6sr8" path="res://assets/card/CardArt_A_side.png" id="5_g7pjm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wq062"]
 resource_local_to_scene = true
@@ -31,7 +31,7 @@ script = ExtResource("1_w50wd")
 card_updater = NodePath("CardUpdater")
 card_sprite = NodePath("CardSprite")
 rotation_speed = 3.5
-card_data = ExtResource("2_v4g6c")
+card_data = ExtResource("2_awiko")
 
 [node name="CardUpdater" parent="." instance=ExtResource("2_rgfit")]
 
@@ -39,7 +39,7 @@ card_data = ExtResource("2_v4g6c")
 z_index = 1
 material = SubResource("ShaderMaterial_wq062")
 position = Vector2(96, 128)
-texture = ExtResource("3_ikmkf")
+texture = ExtResource("5_g7pjm")
 region_rect = Rect2(0, 0, 88, 124)
 
 [node name="Area2D" type="Area2D" parent="."]
