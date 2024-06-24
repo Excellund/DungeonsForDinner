@@ -1,0 +1,100 @@
+[gd_scene load_steps=6 format=3 uid="uid://cb65obavqu03x"]
+
+[ext_resource type="Script" path="res://scripts/RewardScreen.gd" id="1_bmnbu"]
+[ext_resource type="PackedScene" uid="uid://dut3eu6qebkab" path="res://scenes/card.tscn" id="1_qmhyb"]
+[ext_resource type="Resource" uid="uid://blaadinjv8fqm" path="res://resources/cards/skewer_card.tres" id="2_puj1x"]
+[ext_resource type="Resource" uid="uid://ce4qmuel6eel6" path="res://resources/cards/bountiful_berry_card.tres" id="3_hbs4m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sm4ev"]
+bg_color = Color(0.114897, 0.114897, 0.114897, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="RewardScreen" type="CanvasLayer" node_paths=PackedStringArray("left_card", "mid_card", "right_card")]
+process_mode = 3
+follow_viewport_enabled = true
+script = ExtResource("1_bmnbu")
+low_tier_rewards = Array[Resource("res://resources/cards/CardData.gd")]([ExtResource("2_puj1x"), ExtResource("3_hbs4m"), ExtResource("3_hbs4m")])
+left_card = NodePath("PanelContainer/HBoxContainer/LeftButton/LeftCard")
+mid_card = NodePath("PanelContainer/HBoxContainer/MidButton/MidCard")
+right_card = NodePath("PanelContainer/HBoxContainer/RightButton/RightCard")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.2)
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -553.0
+offset_top = -258.0
+offset_right = 581.0
+offset_bottom = 154.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sm4ev")
+
+[node name="Label" type="Label" parent="PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 30
+text = "Pick a Card"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 150
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="LeftButton" type="Button" parent="PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(192, 256)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+flat = true
+
+[node name="LeftCard" parent="PanelContainer/HBoxContainer/LeftButton" instance=ExtResource("1_qmhyb")]
+offset_right = 192.0
+offset_bottom = 256.0
+mouse_filter = 1
+
+[node name="MidButton" type="Button" parent="PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(192, 256)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+flat = true
+
+[node name="MidCard" parent="PanelContainer/HBoxContainer/MidButton" instance=ExtResource("1_qmhyb")]
+layout_mode = 0
+offset_right = 192.0
+offset_bottom = 256.0
+mouse_filter = 1
+
+[node name="RightButton" type="Button" parent="PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(192, 256)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+flat = true
+
+[node name="RightCard" parent="PanelContainer/HBoxContainer/RightButton" instance=ExtResource("1_qmhyb")]
+layout_mode = 0
+offset_right = 192.0
+offset_bottom = 256.0
+mouse_filter = 1
+
+[connection signal="pressed" from="PanelContainer/HBoxContainer/LeftButton" to="." method="_on_left_button_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/MidButton" to="." method="_on_mid_button_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/RightButton" to="." method="_on_right_button_pressed"]

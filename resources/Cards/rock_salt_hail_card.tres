@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://be4g8p4n43mb"]
+
+[ext_resource type="Script" path="res://resources/cards/CardData.gd" id="1_7jhgl"]
+[ext_resource type="Texture2D" uid="uid://dd16r6s68leb" path="res://assets/card/Skewer.png" id="2_1nrhr"]
+
+[resource]
+script = ExtResource("1_7jhgl")
+texture = ExtResource("2_1nrhr")
+card_name = "Rock Salt Hail"
+cost = 5
+healing_on_eat = 0
+card_target = "All Enemies"
+actions = {
+"Damage": 5,
+"RockSalt": 0
+}
+eat_actions = {
+"RockSalt": 0,
+"Servings": 1
+}
+attack_text = "Deal {Damage}(+{RockSalt}) to all enemies"
+eat_text = "Permanently increases the damage your rock salt card do by 5"

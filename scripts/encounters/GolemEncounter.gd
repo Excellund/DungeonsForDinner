@@ -9,3 +9,5 @@ const Y: int = 800
 
 func _init():
 	super._init([GOLEM], [Vector2(X, Y)])
+	self.rewards = [load("res://resources/Cards/rock_salt_hail_card.tres"),\
+					load("res://resources/Cards/rock_salt_spear_card.tres")]

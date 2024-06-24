@@ -1,16 +1,19 @@
 extends Control
 class_name CardPile
 
+@export var view: Control
 var deck: Array[Card] = []
-@export var card_scene: PackedScene
-
 
 func add_card(card:Card):
 	deck.append(card)
 
 
 func add_card_array(cards: Array[Card]):
-	deck.append_array(cards)
+	var cleaned_cards = cards.filter(_is_valid)
+	deck.append_array(cleaned_cards)
+
+func _is_valid(card) -> bool:
+	return is_instance_valid(card)
 
 
 func draw_card(number_of_cards:int = 1) -> Array[Card]:
@@ -20,16 +23,11 @@ func draw_card(number_of_cards:int = 1) -> Array[Card]:
 	return drawn_cards
 
 
-func suffle_pile():
+func shuffle_pile():
 	deck.shuffle()
-
-# testing function
-func _populate_deck(number_of_cards:int = 5):
-	for i in number_of_cards:
-		var new_card = card_scene.instantiate()
-		deck.push_back(new_card)
 
 
 func _on_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		pass # load view deck scene
+		if event.button_mask == MOUSE_BUTTON_MASK_LEFT:
+			view.set_up_view(self.deck)
